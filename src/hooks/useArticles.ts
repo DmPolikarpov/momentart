@@ -51,7 +51,7 @@ export const useArticles = (category?: string) => {
 };
 
 export const useArticle = (id: string) => {
-    return
+    return { data: {}, isLoading: false, error: null, refetch: null }
 //   return useQuery({
 //     queryKey: ['article', id],
 //     queryFn: async () => {
