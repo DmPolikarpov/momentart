@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, X, User, LogOut, ChevronDown, Settings, Shield } from 'lucide-react';
-// import { supabase } from '@/integrations/supabase/client';
-// import { Button } from '@/components/ui/button';
+import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
 // import { useToast } from '@/hooks/use-toast';
-// import type { User as SupabaseUser } from '@supabase/supabase-js';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-//   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-//   const [user, setUser] = useState<SupabaseUser | null>(null);
-//   const [isAdmin, setIsAdmin] = useState(false);
-//   const [loading, setLoading] = useState(true);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 //   const { toast } = useToast();
 
@@ -25,69 +25,69 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-//   useEffect(() => {
-//     // Get initial session
-//     const getSession = async () => {
-//       const { data: { session } } = await supabase.auth.getSession();
-//       setUser(session?.user ?? null);
-//       if (session?.user) {
-//         checkAdminRole(session.user.id);
-//       }
-//       setLoading(false);
-//     };
+  useEffect(() => {
+    // Get initial session
+    const getSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminRole(session.user.id);
+      }
+      setLoading(false);
+    };
 
-//     getSession();
+    getSession();
 
-//     // Listen for auth changes
-//     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-//       (event, session) => {
-//         setUser(session?.user ?? null);
-//         if (session?.user) {
-//           checkAdminRole(session.user.id);
-//         } else {
-//           setIsAdmin(false);
-//         }
-//         setLoading(false);
-//       }
-//     );
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+        if (session?.user) {
+          checkAdminRole(session.user.id);
+        } else {
+          setIsAdmin(false);
+        }
+        setLoading(false);
+      }
+    );
 
-//     return () => subscription.unsubscribe();
-//   }, []);
+    return () => subscription.unsubscribe();
+  }, []);
 
-//   const checkAdminRole = async (userId: string) => {
-//     try {
-//       const { data, error } = await supabase
-//         .from('user_roles')
-//         .select('role')
-//         .eq('user_id', userId)
-//         .eq('role', 'admin');
+  const checkAdminRole = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin');
 
-//       if (error) throw error;
-//       setIsAdmin(data && data.length > 0);
-//     } catch (error) {
-//       console.error('Error checking admin role:', error);
-//       setIsAdmin(false);
-//     }
-//   };
+      if (error) throw error;
+      setIsAdmin(data && data.length > 0);
+    } catch (error) {
+      console.error('Error checking admin role:', error);
+      setIsAdmin(false);
+    }
+  };
 
-//   const handleSignOut = async () => {
-//     try {
-//       const { error } = await supabase.auth.signOut();
-//       if (error) throw error;
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
       
-//       toast({
-//         title: "Signed out",
-//         description: "You have been successfully signed out.",
-//       });
-//       navigate('/');
-//     } catch (error: any) {
-//       toast({
-//         title: "Error",
-//         description: error.message,
-//         variant: "destructive",
-//       });
-//     }
-//   };
+      // toast({
+      //   title: "Signed out",
+      //   description: "You have been successfully signed out.",
+      // });
+      navigate('/');
+    } catch (error: any) {
+      // toast({
+      //   title: "Error",
+      //   description: error.message,
+      //   variant: "destructive",
+      // });
+    }
+  };
 
   const categories = [
     { name: 'Manicure & Nail Art', path: '/manicure' },
@@ -166,7 +166,7 @@ const Header = () => {
             ))}
             
             {/* Auth Section */}
-            {/* {!loading && (
+            {!loading && (
               <div className="flex items-center space-x-4 ml-4">
                 {user ? (
                   <div className="relative">
@@ -225,7 +225,7 @@ const Header = () => {
                   </Button>
                 )}
               </div>
-            )} */}
+            )}
           </nav>
 
           <button
@@ -269,7 +269,7 @@ const Header = () => {
             ))} */}
             
             {/* Mobile Auth Section */}
-            {/* {!loading && (
+            {!loading && (
               <div className="pt-4 border-t border-gray-200">
                 {user ? (
                   <div className="space-y-3">
@@ -313,7 +313,7 @@ const Header = () => {
                   </Button>
                 )}
               </div>
-            )} */}
+            )}
           </nav>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { supabase } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Sparkles, Mail, Lock, User, ArrowLeft } from 'lucide-react';
-// import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/useToast';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -16,15 +16,15 @@ const Auth = () => {
     fullName: ''
   });
   const navigate = useNavigate();
-//   const { toast } = useToast();
+  const { toast } = useToast();
 
   useEffect(() => {
     // Check if user is already logged in
     const checkAuth = async () => {
-    //   const { data: { session } } = await supabase.auth.getSession();
-    //   if (session) {
-    //     navigate('/');
-    //   }
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate('/');
+      }
     };
     checkAuth();
   }, [navigate]);
@@ -35,42 +35,42 @@ const Auth = () => {
 
     try {
       if (isSignUp) {
-        // const { error } = await supabase.auth.signUp({
-        //   email: formData.email,
-        //   password: formData.password,
-        //   options: {
-        //     data: {
-        //       full_name: formData.fullName,
-        //     }
-        //   }
-        // });
+        const { error } = await supabase.auth.signUp({
+          email: formData.email,
+          password: formData.password,
+          options: {
+            data: {
+              full_name: formData.fullName,
+            }
+          }
+        });
 
-        // if (error) throw error;
+        if (error) throw error;
 
-        // toast({
-        //   title: "Account created!",
-        //   description: "Please check your email to verify your account.",
-        // });
+        toast({
+          title: "Account created!",
+          description: "Please check your email to verify your account.",
+        });
       } else {
-        // const { error } = await supabase.auth.signInWithPassword({
-        //   email: formData.email,
-        //   password: formData.password,
-        // });
+        const { error } = await supabase.auth.signInWithPassword({
+          email: formData.email,
+          password: formData.password,
+        });
 
-        // if (error) throw error;
+        if (error) throw error;
 
-        // toast({
-        //   title: "Welcome back!",
-        //   description: "You have successfully signed in.",
-        // });
+        toast({
+          title: "Welcome back!",
+          description: "You have successfully signed in.",
+        });
         navigate('/');
       }
     } catch (error: any) {
-    //   toast({
-    //     title: "Error",
-    //     description: error.message,
-    //     variant: "destructive",
-    //   });
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }

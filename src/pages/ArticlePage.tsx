@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Calendar, User, Clock, ArrowLeft, Edit } from 'lucide-react';
 import { useArticle, calculateReadingTime, generateSlug } from '@/hooks/useArticles';
-// import { supabase } from '@/integrations/supabase/client';
-// import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/useToast';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ArticleImageCarousel from '../components/ArticleImageCarousel';
@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-//   const { toast } = useToast();
+  const { toast } = useToast();
   const [isAdmin, setIsAdmin] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   
@@ -27,20 +27,20 @@ const ArticlePage = () => {
   }, []);
 
   const checkAdminAccess = async () => {
-    // try {
-    //   const { data: { user } } = await supabase.auth.getUser();
-    //   if (!user) return;
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
 
-    //   const { data: roles } = await supabase
-    //     .from('user_roles')
-    //     .select('role')
-    //     .eq('user_id', user.id)
-    //     .eq('role', 'admin');
+      const { data: roles } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id)
+        .eq('role', 'admin');
 
-    //   setIsAdmin(roles && roles.length > 0);
-    // } catch (error) {
-    //   // Silently handle error
-    // }
+      setIsAdmin(roles && roles.length > 0);
+    } catch (error) {
+      // Silently handle error
+    }
   };
 
   if (isLoading) {
@@ -194,10 +194,10 @@ const ArticlePage = () => {
           onSuccess={() => {
             setShowEditForm(false);
             refetch();
-            // toast({
-            //   title: "Success",
-            //   description: "Article updated successfully",
-            // });
+            toast({
+              title: "Success",
+              description: "Article updated successfully",
+            });
           }}
         />
       )}
