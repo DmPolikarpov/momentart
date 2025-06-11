@@ -168,7 +168,7 @@ const Header = () => {
             {/* Auth Section */}
             {!loading && (
               <div className="flex items-center space-x-4 ml-4">
-                {user ? (
+                {user && isAdmin ? (
                   <div className="relative">
                     <button
                       onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -217,12 +217,13 @@ const Header = () => {
                     )}
                   </div>
                 ) : (
-                  <Button
-                    onClick={() => navigate('/auth')}
-                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
-                  >
-                    Sign In
-                  </Button>
+                  <div className='none'></div>
+                  // <Button
+                  //   onClick={() => navigate('/auth')}
+                  //   className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
+                  // >
+                  //   Sign In
+                  // </Button>
                 )}
               </div>
             )}

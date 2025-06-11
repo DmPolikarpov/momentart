@@ -18,9 +18,7 @@ const ArticlePage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   
-  const { data: any, isLoading, error, refetch } = useArticle(id || '');
-
-  const article = {category: "test", title: "test", content: ""}
+  const { data: article, isLoading, error, refetch } = useArticle(id || '');
 
   React.useEffect(() => {
     checkAdminAccess();
@@ -67,21 +65,15 @@ const ArticlePage = () => {
     );
   }
 
-//   const readingTime = calculateReadingTime(article.content || '');
-//   const articleUrl = `${window.location.origin}/article/${article.slug || article.id}`;
+  const readingTime = calculateReadingTime(article.content || '');
+  const articleUrl = `${window.location.origin}/article/${article.slug || article.id}`;
   
-//   // Use article_images or fallback to single image_url for backward compatibility
-//   const images = article.article_images?.length > 0 
-//     ? article.article_images 
-//     : article.image_url 
-//       ? [{ id: 'main', image_url: article.image_url, image_order: 0 }] 
-//       : [];
-
-    const readingTime = '';
-    const articleUrl = "";
-    const images = [];
-
-    
+  // Use article_images or fallback to single image_url for backward compatibility
+  const images = article.article_images?.length > 0 
+    ? article.article_images 
+    : article.image_url 
+      ? [{ id: 'main', image_url: article.image_url, image_order: 0 }] 
+      : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
@@ -124,13 +116,13 @@ const ArticlePage = () => {
               {article.title}
             </h1>
             
-            {/* {article.excerpt && (
+            {article.excerpt && (
               <p className="text-xl text-gray-600 mb-6 leading-relaxed">
                 {article.excerpt}
               </p>
-            )} */}
+            )}
 
-            {/* <div className="flex items-center justify-between flex-wrap gap-4">
+            <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center space-x-6 text-gray-500">
                 {article.profiles && (
                   <div className="flex items-center space-x-2">
@@ -161,7 +153,7 @@ const ArticlePage = () => {
                 excerpt={article.excerpt || undefined}
                 url={articleUrl}
               />
-            </div> */}
+            </div>
           </header>
 
           {/* Article images carousel */}
