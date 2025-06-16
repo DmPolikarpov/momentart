@@ -10,9 +10,10 @@ const Footer = () => {
   ];
 
   const footerLinks = {
-    'Art Categories': ['Digital Art', 'Paintings', 'Sculptures', 'Photography', 'Mixed Media'],
-    'Resources': ['Art Tutorials', 'Inspiration', 'Artist Profiles', 'Creative Challenges', 'Art News'],
-    'Company': ['About Us', 'Contact', 'Careers', 'Privacy Policy', 'Terms of Service']
+    // 'Art Categories': ['Digital Art', 'Paintings', 'Sculptures', 'Photography', 'Mixed Media'],
+    // 'Resources': ['Art Tutorials', 'Inspiration', 'Artist Profiles', 'Creative Challenges', 'Art News'],
+    'Company': ['About Us', 'Contact']
+    // 'Company': ['About Us', 'Contact', 'Careers', 'Privacy Policy', 'Terms of Service']
   };
 
   return (
@@ -24,12 +25,12 @@ const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 pt-16 pb-8 relative z-10">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
+            <div className="flex items-center lg:justify-center space-x-3 mb-6">
               <img 
-                src="/lovable-uploads/d86c8025-3484-4c80-a042-6cc5eafd654f.png" 
+                src="/src/assets/logo.png"
                 alt="Moment Art Logo" 
                 className="w-8 h-8" 
               />
@@ -40,7 +41,7 @@ const Footer = () => {
             <p className="text-gray-400 mb-6 leading-relaxed">
               Your ultimate destination for artistic inspiration, creative community, and discovering the latest trends in contemporary art and design.
             </p>
-            <div className="flex space-x-4">
+            {/* <div className="flex lg:justify-center space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
@@ -50,8 +51,10 @@ const Footer = () => {
                   <social.icon className="w-5 h-5" />
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
+
+          <div className='lg:col-span-1'></div>
 
           {/* Links Sections */}
           {Object.entries(footerLinks).map(([category, links]) => (
@@ -79,17 +82,17 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="border-t border-gray-800 pt-8 mb-8">
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex items-center space-x-3">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex items-center justify-center space-x-3">
               <div className="p-2 bg-green-500/20 rounded-lg">
                 <Mail className="w-5 h-5 text-green-400" />
               </div>
               <div>
                 <p className="text-sm text-gray-400">Email</p>
-                <p className="text-white">hello@momentart.com</p>
+                <p className="text-white">momentart.help@yandex.ru</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
+            {/* <div className="flex items-center space-x-3">
               <div className="p-2 bg-emerald-500/20 rounded-lg">
                 <Phone className="w-5 h-5 text-emerald-400" />
               </div>
@@ -97,14 +100,14 @@ const Footer = () => {
                 <p className="text-sm text-gray-400">Phone</p>
                 <p className="text-white">+1 (555) 123-4567</p>
               </div>
-            </div>
-            <div className="flex items-center space-x-3">
+            </div> */}
+            <div className="flex items-center justify-center space-x-3">
               <div className="p-2 bg-teal-500/20 rounded-lg">
                 <MapPin className="w-5 h-5 text-teal-400" />
               </div>
               <div>
                 <p className="text-sm text-gray-400">Location</p>
-                <p className="text-white">New York, NY</p>
+                <p className="text-white">Russia</p>
               </div>
             </div>
           </div>
@@ -113,9 +116,9 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 Moment Art. All rights reserved.
+            © 2025 Moment Art. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-sm">
+          {/* <div className="flex space-x-6 text-sm">
             <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
               Privacy Policy
             </a>
@@ -125,7 +128,7 @@ const Footer = () => {
             <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
               Cookie Policy
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

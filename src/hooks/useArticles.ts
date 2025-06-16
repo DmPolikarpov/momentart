@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import type { Tables } from '@/integrations/supabase/types';
 
@@ -11,9 +11,9 @@ export interface ArticleWithAuthor extends Article {
   article_images?: ArticleImage[];
 }
 
-export const useArticles = (category?: string) => {
+export const useArticles = (category?: string, artNumber?: number) => {
   return useQuery({
-    queryKey: ['articles', category],
+    queryKey: ['articles', category, artNumber],
     queryFn: async () => {
       let query = supabase
         .from('articles')
@@ -37,6 +37,10 @@ export const useArticles = (category?: string) => {
         query = query.eq('category', category);
       }
 
+      if (artNumber !== undefined) {
+        query = query.limit(artNumber);
+      }
+
       const { data, error } = await query;
       if (error) throw error;
       
@@ -46,6 +50,52 @@ export const useArticles = (category?: string) => {
         article_images: article.article_images?.sort((a, b) => a.image_order - b.image_order) || []
       }));
     },
+  });
+};
+
+export const useInfiniteArticles = (category?: string, pageSize: number = 2) => {
+  return useInfiniteQuery({
+    queryKey: ['articles-infinite', category, pageSize],
+    queryFn: async ({ pageParam = 0 }) => {
+      let query = supabase
+        .from('articles')
+        .select(`
+          *,
+          profiles:author_id (
+            id,
+            full_name,
+            avatar_url
+          ),
+          article_images (
+            id,
+            image_url,
+            image_order
+          )
+        `)
+        .eq('published', true)
+        .order('created_at', { ascending: false })
+        .range(pageParam * pageSize, (pageParam + 1) * pageSize - 1);
+
+      if (category) {
+        query = query.eq('category', category);
+      }
+
+      const { data, error } = await query;
+      if (error) throw error;
+      
+      // Sort images by order for each article
+      const articles = (data as ArticleWithAuthor[]).map(article => ({
+        ...article,
+        article_images: article.article_images?.sort((a, b) => a.image_order - b.image_order) || []
+      }));
+
+      return {
+        articles,
+        nextPage: articles.length === pageSize ? pageParam + 1 : undefined,
+      };
+    },
+    getNextPageParam: (lastPage) => lastPage.nextPage,
+    initialPageParam: 0,
   });
 };
 

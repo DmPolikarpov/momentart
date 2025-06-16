@@ -1,18 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ArrowRight, Clock, User, Beaker, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useArticles } from '../hooks/useArticles';
+import { useInfiniteArticles, calculateReadingTime } from '../hooks/useArticles';
 
 const CosmetologyPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
-  const { data: articles = [], isLoading } = useArticles('Cosmetology Trends');
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    error
+  } = useInfiniteArticles('Cosmetology Trends');
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1000 >=
+      document.documentElement.offsetHeight
+    ) {
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    }
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   const handleArticleClick = (articleId: string) => {
     navigate(`/article/${articleId}`);
@@ -30,8 +53,9 @@ const CosmetologyPage = () => {
     );
   }
 
-  const featuredArticle = articles.find((_, index) => index === 0);
-  const regularArticles = articles.slice(1);
+  const allArticles = data?.pages.flatMap(page => page.articles) || [];
+  const featuredArticle = allArticles[0];
+  const regularArticles = allArticles.slice(1);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
@@ -83,11 +107,11 @@ const CosmetologyPage = () => {
                   <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="w-4 h-4" />
-                      <span>Beauty Scientist</span>
+                      <span>{featuredArticle.profiles?.full_name || 'Beauty Scientist'}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
-                      <span>9 min read</span>
+                      <span>{calculateReadingTime(featuredArticle.content || '')} min read</span>
                     </div>
                   </div>
                   <button 
@@ -100,7 +124,7 @@ const CosmetologyPage = () => {
                 </div>
                 <div className="animate-fade-in animation-delay-200">
                   <img
-                    src={featuredArticle.image_url || "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop"}
+                    src={featuredArticle.article_images?.[0]?.image_url || featuredArticle.image_url || "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop"}
                     alt={featuredArticle.title}
                     className="w-full h-80 object-cover rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer"
                     onClick={() => handleArticleClick(featuredArticle.id)}
@@ -120,52 +144,72 @@ const CosmetologyPage = () => {
           </h2>
           
           {regularArticles.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {regularArticles.map((article, index) => (
-                <article
-                  key={article.id}
-                  onClick={() => handleArticleClick(article.id)}
-                  className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden animate-fade-in hover:scale-105 hover:-translate-y-2 cursor-pointer`}
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={article.image_url || "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop"}
-                      alt={article.title}
-                      className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {article.excerpt || 'Discover the latest innovations and scientific research in cosmetology.'}
-                    </p>
-
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <User className="w-4 h-4" />
-                          <span>Beauty Scientist</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Clock className="w-4 h-4" />
-                          <span>8 min read</span>
-                        </div>
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {regularArticles.map((article, index) => {
+                  const readingTime = calculateReadingTime(article.content || '');
+                  const mainImage = article.article_images?.[0]?.image_url || article.image_url;
+                  
+                  return (
+                    <article
+                      key={article.id}
+                      onClick={() => handleArticleClick(article.id)}
+                      className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden animate-fade-in hover:scale-105 hover:-translate-y-2 cursor-pointer`}
+                      style={{ animationDelay: `${index * 150}ms` }}
+                    >
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={mainImage || "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop"}
+                          alt={article.title}
+                          className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                    </div>
 
-                    <button className="flex items-center space-x-2 text-amber-600 font-semibold group-hover:space-x-3 transition-all duration-300">
-                      <span>Read More</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-amber-600 transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {article.excerpt || (article.content ? article.content.substring(0, 150) + '...' : 'Discover the latest innovations and scientific research in cosmetology.')}
+                        </p>
+
+                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center space-x-1">
+                              <User className="w-4 h-4" />
+                              <span>{article.profiles?.full_name || 'Beauty Scientist'}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Clock className="w-4 h-4" />
+                              <span>{readingTime} min read</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button className="flex items-center space-x-2 text-amber-600 font-semibold group-hover:space-x-3 transition-all duration-300">
+                          <span>Read More</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+              
+              {/* Loading indicator for infinite scroll */}
+              {isFetchingNextPage && (
+                <div className="flex justify-center mt-12">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500"></div>
+                </div>
+              )}
+              
+              {!hasNextPage && regularArticles.length > 0 && (
+                <div className="text-center mt-12">
+                  <p className="text-gray-500">You've reached the end of all articles</p>
+                </div>
+              )}
+            </>
           ) : (
             <div className="text-center py-16">
               <p className="text-gray-600 text-lg">No articles available yet. Check back soon!</p>
