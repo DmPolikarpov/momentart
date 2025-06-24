@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Star, Palette } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
+
+  const handleExploreGallery = () => {
+    navigate('/gallery');
+  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -86,7 +92,10 @@ const Hero = () => {
 
           {/* Enhanced CTA Buttons */}
           <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1800 delay-600 ${isLoaded ? 'animate-buttons-appear opacity-100' : 'opacity-0 scale-95'}`}>
-            <button className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 hover:from-green-600 hover:to-emerald-700 animate-pulse-button">
+            <button 
+              onClick={handleExploreGallery}
+              className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 hover:from-green-600 hover:to-emerald-700 animate-pulse-button"
+            >
               <span className="flex items-center justify-center space-x-2">
                 <span>Explore Gallery</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />

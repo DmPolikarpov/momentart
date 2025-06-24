@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+
+
   const socialLinks = [
     { icon: Instagram, href: "#", color: "hover:text-emerald-500" },
     { icon: Facebook, href: "#", color: "hover:text-blue-500" },
@@ -12,7 +17,10 @@ const Footer = () => {
   const footerLinks = {
     // 'Art Categories': ['Digital Art', 'Paintings', 'Sculptures', 'Photography', 'Mixed Media'],
     // 'Resources': ['Art Tutorials', 'Inspiration', 'Artist Profiles', 'Creative Challenges', 'Art News'],
-    'Company': ['About Us', 'Contact']
+    'Company': [
+      {name: 'About Us', link: '/about'}, 
+      {name: 'Contact', link: '/contact'}
+    ]
     // 'Company': ['About Us', 'Contact', 'Careers', 'Privacy Policy', 'Terms of Service']
   };
 
@@ -64,13 +72,14 @@ const Footer = () => {
               </h3>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <a
                       href="#"
+                      onClick={() => navigate(link.link)}
                       className="text-gray-400 hover:text-green-400 transition-colors duration-300 flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-300">
-                        {link}
+                        {link.name}
                       </span>
                     </a>
                   </li>

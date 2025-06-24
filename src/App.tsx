@@ -12,6 +12,9 @@ import SkincareWellnessPage from "./pages/SkincareWellnessPage";
 import ArticlePage from "./pages/ArticlePage";
 import UserProfile from "./pages/UserProfile";
 import AdminPage from "./pages/AdminPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +28,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/manicure" element={<ManicurePage />} />
           <Route path="/eyelashes" element={<EyelashesPage />} />
           <Route path="/cosmetology" element={<CosmetologyPage />} />
@@ -32,6 +36,8 @@ const App = () => (
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

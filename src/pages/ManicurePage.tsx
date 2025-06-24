@@ -3,6 +3,7 @@ import { ArrowRight, Clock, User, Hand, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ArticleInteractions from '../components/ArticleInteractions';
 import { useInfiniteArticles, calculateReadingTime } from '../hooks/useArticles';
 
 const ManicurePage = () => {
@@ -113,6 +114,7 @@ const ManicurePage = () => {
                       <span>{calculateReadingTime(featuredArticle.content || '')} min read</span>
                     </div>
                   </div>
+                  <ArticleInteractions articleId={featuredArticle.id} className="mb-6" />
                   <button 
                     onClick={() => handleArticleClick(featuredArticle.id)}
                     className="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2"
@@ -186,10 +188,13 @@ const ManicurePage = () => {
                           </div>
                         </div>
 
-                        <button className="flex items-center space-x-2 text-rose-600 font-semibold group-hover:space-x-3 transition-all duration-300">
-                          <span>Read More</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                        <div className="flex items-center justify-between">
+                          <ArticleInteractions articleId={article.id} />
+                          <button className="flex items-center space-x-2 text-rose-600 font-semibold group-hover:space-x-3 transition-all duration-300">
+                            <span>Read More</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </button>
+                        </div>
                       </div>
                     </article>
                   );

@@ -1,44 +1,82 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Eye, Hand, Heart } from 'lucide-react';
+import { useArticles } from '@/hooks/useArticles';
 
 const Categories = () => {
   const navigate = useNavigate();
+  const { data: allArticles = [], isLoading } = useArticles();
 
-  const categories = [
+  const categoryConfig = [
     {
       icon: Hand,
       title: "Manicure & Nail Art",
       description: "Latest trends in nail design, colors, and techniques",
       color: "from-rose-400 to-pink-500",
-      articles: "124 Articles",
-      path: "/manicure"
+      path: "/manicure",
+      categoryKey: "Manicure & Nail Art"
     },
     {
       icon: Eye,
       title: "Eyelash Extensions",
       description: "Professional tips and stunning lash transformations",
       color: "from-purple-400 to-pink-500",
-      articles: "89 Articles",
-      path: "/eyelashes"
+      path: "/eyelashes",
+      categoryKey: "Eyelash Extensions"
     },
     {
       icon: Sparkles,
       title: "Cosmetology Trends",
       description: "Beauty innovations and industry breakthroughs",
       color: "from-amber-400 to-rose-500",
-      articles: "156 Articles",
-      path: "/cosmetology"
+      path: "/cosmetology",
+      categoryKey: "Cosmetology Trends"
     },
     {
       icon: Heart,
       title: "Skincare & Wellness",
       description: "Holistic approaches to beauty and self-care",
       color: "from-pink-400 to-rose-500",
-      articles: "203 Articles",
-      path: "/skincare-wellness"
+      path: "/skincare-wellness",
+      categoryKey: "Skincare & Wellness"
     }
   ];
+
+  // Calculate article counts for each category
+  const getArticleCount = (categoryKey: string) => {
+    if (!allArticles.length) return 0;
+    return allArticles.filter(article => 
+      article.category?.toLowerCase() === categoryKey.toLowerCase()
+    ).length;
+  };
+
+  const categories = categoryConfig.map(config => ({
+    ...config,
+    articles: `${getArticleCount(config.categoryKey)} Articles`
+  }));
+
+  if (isLoading) {
+    return (
+      <section className="py-20 bg-gradient-to-br from-rose-50 to-pink-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+                Explore by Category
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Dive deep into your favorite beauty topics with our curated collections
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-500 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading categories...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-gradient-to-br from-rose-50 to-pink-50">
