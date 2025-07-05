@@ -2,44 +2,47 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Users, Target, Heart, Award } from 'lucide-react';
+import { useTranslations } from '@/hooks/useTranslations';
 
 const About = () => {
+  const { t } = useTranslations();
+
   const teamMembers = [
     {
       name: "Sarah Johnson",
-      role: "Founder & Creative Director",
+      role: t('about.team.founder.role'),
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
-      bio: "Passionate about beauty innovation with 15+ years in the industry."
+      bio: t('about.team.founder.bio')
     },
     {
       name: "Emma Chen",
-      role: "Beauty Expert",
+      role: t('about.team.artist.role'),
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
-      bio: "Licensed cosmetologist specializing in nail art and skincare."
+      bio: t('about.team.artist.bio')
     },
     {
       name: "Maria Rodriguez",
-      role: "Content Creator",
+      role: t('about.team.developer.role'),
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
-      bio: "Creating inspiring content that empowers beauty enthusiasts worldwide."
+      bio: t('about.team.developer.bio')
     }
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Innovation",
-      description: "We stay ahead of beauty trends and bring you the latest innovations in the industry."
+      title: t('about.values.creativity.title'),
+      description: t('about.values.creativity.description')
     },
     {
       icon: Heart,
-      title: "Authenticity",
-      description: "We believe in honest reviews and genuine recommendations from real beauty experts."
+      title: t('about.values.community.title'),
+      description: t('about.values.community.description')
     },
     {
       icon: Users,
-      title: "Community",
-      description: "Building a supportive community where everyone can learn and grow together."
+      title: t('about.values.quality.title'),
+      description: t('about.values.quality.description')
     },
     {
       icon: Award,
@@ -58,28 +61,23 @@ const About = () => {
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                About Moment Art
+                {t('about.hero.title')}
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We're passionate about bringing you the latest in beauty trends, expert tips, and creative inspiration. 
-              Our mission is to empower everyone to express their unique beauty through art and innovation.
+              {t('about.hero.subtitle')}
             </p>
           </div>
 
           {/* Story Section */}
           <div className="grid lg:grid-cols-2 gap-12 mb-20 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('about.story.title')}</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Founded in 2020, Moment Art began as a small blog sharing beauty tips and creative inspiration. 
-                What started as a passion project has grown into a comprehensive platform serving thousands of 
-                beauty enthusiasts worldwide.
+                {t('about.story.content')}
               </p>
               <p className="text-gray-600 leading-relaxed">
-                We believe that beauty is an art form, and everyone deserves access to quality information, 
-                tutorials, and inspiration to express their creativity. From nail art to skincare routines, 
-                we cover it all with authenticity and expertise.
+                {t('about.mission.content')}
               </p>
             </div>
             <div className="relative">
@@ -94,7 +92,7 @@ const About = () => {
 
           {/* Values Section */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Our Values</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">{t('about.values.title')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <div 
@@ -113,7 +111,7 @@ const About = () => {
 
           {/* Team Section */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Meet Our Team</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">{t('about.team.title')}</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
                 <div 
@@ -135,13 +133,12 @@ const About = () => {
 
           {/* CTA Section */}
           <div className="text-center bg-white rounded-2xl p-12 shadow-xl">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Join Our Community</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('about.cta.title')}</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Ready to explore the world of beauty and creativity? Join thousands of others who trust 
-              Moment Art for their daily dose of inspiration.
+              {t('about.cta.description')}
             </p>
             <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg">
-              Get Started Today
+              {t('about.cta.button')}
             </button>
           </div>
         </div>

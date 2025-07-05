@@ -1,0 +1,140 @@
+{
+  "about": {
+    "hero": {
+      "title": "About Moment Art",
+      "subtitle": "We're passionate about bringing you the latest in beauty trends, expert tips, and creative inspiration. Our mission is to empower everyone to express their unique beauty through art and innovation."
+    },
+    "story": {
+      "title": "Our Story",
+      "content": "Founded in 2020, Moment Art began as a small blog sharing beauty tips and creative inspiration. What started as a passion project has grown into a comprehensive platform serving thousands of beauty enthusiasts worldwide."
+    },
+    "mission": {
+      "content": "We believe that beauty is an art form, and everyone deserves access to quality information, tutorials, and inspiration to express their creativity. From nail art to skincare routines, we cover it all with authenticity and expertise."
+    },
+    "values": {
+      "title": "Our Values",
+      "creativity": {
+        "title": "Innovation",
+        "description": "We stay ahead of beauty trends and bring you the latest innovations in the industry."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Building a supportive community where everyone can learn and grow together."
+      },
+      "quality": {
+        "title": "Authenticity",
+        "description": "We believe in honest reviews and genuine recommendations from real beauty experts."
+      }
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "founder": {
+        "role": "Founder & Creative Director",
+        "bio": "Passionate about beauty innovation with 15+ years in the industry."
+      },
+      "artist": {
+        "role": "Beauty Expert",
+        "bio": "Licensed cosmetologist specializing in nail art and skincare."
+      },
+      "developer": {
+        "role": "Content Creator",
+        "bio": "Creating inspiring content that empowers beauty enthusiasts worldwide."
+      }
+    },
+    "cta": {
+      "title": "Join Our Community",
+      "description": "Ready to explore the world of beauty and creativity? Join thousands of others who trust Moment Art for their daily dose of inspiration.",
+      "button": "Get Started Today"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Get in Touch",
+      "subtitle": "Have questions, suggestions, or just want to say hello? We'd love to hear from you. Reach out and let's start a conversation about beauty, creativity, and inspiration."
+    },
+    "form": {
+      "title": "Send us a Message",
+      "name": "Your Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Message Sent!",
+      "successMessage": "Thank you for contacting us. We'll get back to you soon.",
+      "namePlaceholder": "Enter your name",
+      "emailPlaceholder": "Enter your email",
+      "subjectPlaceholder": "What's this about?",
+      "messagePlaceholder": "Tell us more..."
+    },
+    "info": {
+      "title": "Contact Information",
+      "email": "Email Us",
+      "emailAddress": "hello@momentart.com",
+      "emailDescription": "Send us an email anytime",
+      "phone": "Call Us",
+      "phoneNumber": "+1 (555) 123-4567",
+      "phoneDescription": "Mon-Fri from 9am to 6pm",
+      "address": "Visit Us",
+      "addressDetails": "123 Beauty Street, New York, NY 10001",
+      "addressDescription": "Come say hello at our office",
+      "hours": "Business Hours",
+      "hoursDetails": "Mon-Fri: 9AM-6PM",
+      "hoursDescription": "Weekend: 10AM-4PM"
+    },
+    "map": {
+      "title": "Find Us",
+      "placeholder": "Interactive map would go here"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "response": {
+        "question": "How quickly do you respond to messages?",
+        "answer": "We typically respond within 24 hours during business days. For urgent matters, please call us directly."
+      },
+      "consultation": {
+        "question": "Do you offer beauty consultations?",
+        "answer": "Yes! We offer virtual beauty consultations. Contact us to schedule an appointment with our experts."
+      },
+      "contribute": {
+        "question": "Can I contribute content to your blog?",
+        "answer": "We welcome guest contributors! Send us your ideas and writing samples for review."
+      },
+      "advertise": {
+        "question": "How can I advertise with you?",
+        "answer": "We offer various advertising opportunities. Contact our team to discuss partnership options."
+      }
+    }
+  },
+  "pages": {
+    "manicure": {
+      "latestArticles": "Latest Manicure Articles"
+    },
+    "eyelashes": {
+      "latestArticles": "Latest Eyelash Extension Articles",
+      "featuredGuide": "Featured Guide",
+      "defaultExcerpt": "Master the art of eyelash extensions with professional techniques and tips.",
+      "lashExpert": "Lash Expert",
+      "readGuide": "Read Guide",
+      "defaultDescription": "Learn professional eyelash extension techniques and achieve stunning results."
+    },
+    "cosmetology": {
+      "latestArticles": "Latest Research & Innovations",
+      "scientificBreakthrough": "Scientific Breakthrough",
+      "defaultExcerpt": "Explore the latest scientific breakthroughs in cosmetology and beauty treatments.",
+      "beautyScientist": "Beauty Scientist",
+      "readResearch": "Read Research",
+      "defaultDescription": "Discover the latest innovations and scientific research in cosmetology."
+    },
+    "skincare": {
+      "latestArticles": "Wellness & Natural Beauty",
+      "holisticApproach": "Holistic Approach",
+      "defaultExcerpt": "Discover holistic approaches to skincare and wellness for naturally radiant skin.",
+      "wellnessExpert": "Wellness Expert",
+      "defaultDescription": "Learn about natural skincare approaches and wellness practices for healthy, glowing skin."
+    },
+    "common": {
+      "endOfArticles": "You've reached the end of all articles",
+      "noArticles": "No articles available yet. Check back soon!"
+    }
+  }
+}

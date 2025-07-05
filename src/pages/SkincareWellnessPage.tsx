@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useArticles } from '../hooks/useArticles';
+import { useTranslations } from '../hooks/useTranslations';
 
 const SkincareWellnessPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
   const { data: articles = [], isLoading } = useArticles('Skincare & Wellness');
+  const { t } = useTranslations();
 
   useEffect(() => {
     setIsLoaded(true);
@@ -60,17 +62,17 @@ const SkincareWellnessPage = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg transition-all duration-1000 ${isLoaded ? 'animate-slide-down opacity-100' : 'opacity-0 -translate-y-10'}`}>
             <Heart className="w-5 h-5 text-emerald-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-700">Skincare & Wellness</span>
+            <span className="text-sm font-medium text-gray-700">{t('categories.skincare.title')}</span>
           </div>
           
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
             <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-              Skincare & Wellness
+              {t('categories.skincare.title')}
             </span>
           </h1>
           
           <p className={`text-xl text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
-            Nurture your natural glow with holistic approaches to beauty and self-care
+            {t('categories.skincare.description')}
           </p>
         </div>
       </section>
@@ -84,29 +86,29 @@ const SkincareWellnessPage = () => {
                 <div className="animate-fade-in">
                   <div className="flex items-center space-x-2 mb-4">
                     <Leaf className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm font-medium text-emerald-600">Holistic Approach</span>
+                    <span className="text-sm font-medium text-emerald-600">{t('pages.skincare.holisticApproach')}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                     {featuredArticle.title}
                   </h2>
                   <p className="text-xl text-gray-600 mb-6">
-                    {featuredArticle.excerpt || 'Discover holistic approaches to skincare and wellness for naturally radiant skin.'}
+                    {featuredArticle.excerpt || t('pages.skincare.defaultExcerpt')}
                   </p>
                   <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="w-4 h-4" />
-                      <span>Wellness Expert</span>
+                      <span>{t('pages.skincare.wellnessExpert')}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
-                      <span>10 min read</span>
+                      <span>10 {t('common.minRead')}</span>
                     </div>
                   </div>
                   <button 
                     onClick={() => handleArticleClick(featuredArticle.id)}
                     className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2"
                   >
-                    <span>Read Article</span>
+                    <span>{t('featuredArticles.readMore')}</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -128,7 +130,7 @@ const SkincareWellnessPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-            Wellness & Natural Beauty
+            {t('pages.skincare.latestArticles')}
           </h2>
           
           {regularArticles.length > 0 ? (
@@ -154,24 +156,24 @@ const SkincareWellnessPage = () => {
                       {article.title}
                     </h3>
                     <p className="text-gray-600 mb-4 line-clamp-3">
-                      {article.excerpt || 'Learn about natural skincare approaches and wellness practices for healthy, glowing skin.'}
+                      {article.excerpt || t('pages.skincare.defaultDescription')}
                     </p>
 
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <User className="w-4 h-4" />
-                          <span>Wellness Expert</span>
+                          <span>{t('pages.skincare.wellnessExpert')}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Clock className="w-4 h-4" />
-                          <span>8 min read</span>
+                          <span>8 {t('common.minRead')}</span>
                         </div>
                       </div>
                     </div>
 
                     <button className="flex items-center space-x-2 text-emerald-600 font-semibold group-hover:space-x-3 transition-all duration-300">
-                      <span>Read More</span>
+                      <span>{t('featuredArticles.readMore')}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
@@ -180,7 +182,7 @@ const SkincareWellnessPage = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <p className="text-gray-600 text-lg">No articles available yet. Check back soon!</p>
+              <p className="text-gray-600 text-lg">{t('pages.common.noArticles')}</p>
             </div>
           )}
         </div>

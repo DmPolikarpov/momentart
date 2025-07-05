@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { User, Mail, Calendar, Settings, Heart, BookOpen } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/useToast';
+import { useTranslations } from '@/hooks/useTranslations';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ import type { Tables } from '@/integrations/supabase/types';
 type Profile = Tables<'profiles'>;
 
 const UserProfile = () => {
+  const { t } = useTranslations();
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -72,7 +74,7 @@ const UserProfile = () => {
       });
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -96,15 +98,15 @@ const UserProfile = () => {
       if (error) throw error;
 
       toast({
-        title: "Success",
-        description: "Profile updated successfully",
+        title: t('profile.updateSuccess'),
+        description: t('profile.updateSuccessMessage'),
       });
 
       setEditing(false);
       getUser(); // Refresh profile data
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -138,13 +140,13 @@ const UserProfile = () => {
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold">
-                    {profile?.full_name || 'User Profile'}
+                    {profile?.full_name || t('profile.title')}
                   </h1>
                   <p className="text-green-100 mt-2">
                     {profile?.email}
                   </p>
                   <p className="text-green-100 text-sm mt-1">
-                    Member since {new Date(profile?.created_at || '').toLocaleDateString()}
+                    {t('profile.memberSince')} {new Date(profile?.created_at || '').toLocaleDateString()}
                   </p>
                 </div>
               </div>
@@ -156,40 +158,40 @@ const UserProfile = () => {
                 {/* Profile Information */}
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-gray-800">Profile Information</h2>
+                    <h2 className="text-2xl font-bold text-gray-800">{t('profile.information')}</h2>
                     <Button
                       onClick={() => setEditing(!editing)}
                       variant="outline"
                       size="sm"
                     >
                       <Settings className="w-4 h-4 mr-2" />
-                      {editing ? 'Cancel' : 'Edit'}
+                      {editing ? t('profile.cancel') : t('profile.edit')}
                     </Button>
                   </div>
 
                   {editing ? (
                     <div className="space-y-4">
                       <div>
-                        <Label htmlFor="full_name">Full Name</Label>
+                        <Label htmlFor="full_name">{t('profile.fullName')}</Label>
                         <Input
                           id="full_name"
                           value={formData.full_name}
                           onChange={(e) => setFormData(prev => ({ ...prev, full_name: e.target.value }))}
-                          placeholder="Enter your full name"
+                          placeholder={t('profile.fullNamePlaceholder')}
                         />
                       </div>
                       <div>
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">{t('profile.email')}</Label>
                         <Input
                           id="email"
                           type="email"
                           value={formData.email}
                           onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                          placeholder="Enter your email"
+                          placeholder={t('profile.emailPlaceholder')}
                         />
                       </div>
                       <Button onClick={updateProfile} className="w-full">
-                        Save Changes
+                        {t('profile.saveChanges')}
                       </Button>
                     </div>
                   ) : (
@@ -197,21 +199,21 @@ const UserProfile = () => {
                       <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                         <User className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-500">Full Name</p>
-                          <p className="font-medium">{profile?.full_name || 'Not set'}</p>
+                          <p className="text-sm text-gray-500">{t('profile.fullName')}</p>
+                          <p className="font-medium">{profile?.full_name || t('profile.notSet')}</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                         <Mail className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-500">Email</p>
+                          <p className="text-sm text-gray-500">{t('profile.email')}</p>
                           <p className="font-medium">{profile?.email}</p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
                         <Calendar className="w-5 h-5 text-gray-500" />
                         <div>
-                          <p className="text-sm text-gray-500">Member Since</p>
+                          <p className="text-sm text-gray-500">{t('profile.memberSince')}</p>
                           <p className="font-medium">
                             {new Date(profile?.created_at || '').toLocaleDateString()}
                           </p>
@@ -223,19 +225,19 @@ const UserProfile = () => {
 
                 {/* Activity Stats */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-6">Activity</h2>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('profile.activity')}</h2>
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3 p-4 bg-green-50 rounded-lg">
                       <Heart className="w-5 h-5 text-green-500" />
                       <div>
-                        <p className="text-sm text-gray-500">Favorite Articles</p>
+                        <p className="text-sm text-gray-500">{t('profile.favoriteArticles')}</p>
                         <p className="font-medium text-green-600">0</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3 p-4 bg-emerald-50 rounded-lg">
                       <BookOpen className="w-5 h-5 text-emerald-500" />
                       <div>
-                        <p className="text-sm text-gray-500">Articles Read</p>
+                        <p className="text-sm text-gray-500">{t('profile.articlesRead')}</p>
                         <p className="font-medium text-emerald-600">0</p>
                       </div>
                     </div>

@@ -16,9 +16,9 @@ export interface ArticleWithStats extends ArticleWithAuthor {
   like_count?: number;
 }
 
-export const useArticles = (category?: string, artNumber?: number) => {
+export const useArticles = (category?: string) => {
   return useQuery({
-    queryKey: ['articles', category, artNumber],
+    queryKey: ['articles', category],
     queryFn: async () => {
       let query = supabase
         .from('articles')
@@ -32,7 +32,8 @@ export const useArticles = (category?: string, artNumber?: number) => {
           article_images (
             id,
             image_url,
-            image_order
+            image_order,
+            source
           )
         `)
         .eq('published', true)
@@ -40,10 +41,6 @@ export const useArticles = (category?: string, artNumber?: number) => {
 
       if (category) {
         query = query.eq('category', category);
-      }
-
-      if (artNumber !== undefined) {
-        query = query.limit(artNumber);
       }
 
       const { data, error } = await query;
@@ -58,7 +55,7 @@ export const useArticles = (category?: string, artNumber?: number) => {
   });
 };
 
-export const useInfiniteArticles = (category?: string, pageSize: number = 2) => {
+export const useInfiniteArticles = (category?: string, pageSize: number = 12) => {
   return useInfiniteQuery({
     queryKey: ['articles-infinite', category, pageSize],
     queryFn: async ({ pageParam = 0 }) => {
@@ -74,7 +71,8 @@ export const useInfiniteArticles = (category?: string, pageSize: number = 2) => 
           article_images (
             id,
             image_url,
-            image_order
+            image_order,
+            source
           )
         `)
         .eq('published', true)
@@ -121,7 +119,8 @@ export const useArticle = (id: string) => {
           article_images (
             id,
             image_url,
-            image_order
+            image_order,
+            source
           )
         `)
         .eq('slug', id)
@@ -142,7 +141,8 @@ export const useArticle = (id: string) => {
             article_images (
               id,
               image_url,
-              image_order
+              image_order,
+              source
             )
           `)
           .eq('id', id)
@@ -182,7 +182,8 @@ export const useArticlesWithStats = () => {
           article_images (
             id,
             image_url,
-            image_order
+            image_order,
+            source
           )
         `)
         .eq('published', true)
@@ -348,7 +349,7 @@ export const useCreateArticle = () => {
   return useMutation({
     mutationFn: async ({ article, images }: { 
       article: Omit<Article, 'id' | 'created_at' | 'updated_at' | 'slug'>; 
-      images: string[];
+      images: any[];
     }) => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error('Not authenticated');

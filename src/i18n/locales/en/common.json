@@ -1,0 +1,27 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "tryAgain": "Try Again",
+    "expert": "Expert",
+    "minRead": "min read"
+  },
+  "footer": {
+    "description": "Your ultimate destination for artistic inspiration, creative community, and discovering the latest trends in contemporary art and design.",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "copyright": "© 2024 Moment Art. All rights reserved."
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  },
+  "dateLocale": "en-US"
+}

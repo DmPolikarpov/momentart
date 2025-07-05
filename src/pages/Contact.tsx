@@ -4,8 +4,10 @@ import Footer from '../components/Footer';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/useToast';
+import { useTranslations } from '@/hooks/useTranslations';
 
 const Contact = () => {
+  const { t } = useTranslations();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,10 +26,9 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you soon.",
+      title: t('contact.form.success'),
+      description: t('contact.form.successMessage'),
     });
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
@@ -35,27 +36,27 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email Us",
-      content: "hello@momentart.com",
-      description: "Send us an email anytime"
+      title: t('contact.info.email'),
+      content: t('contact.info.emailAddress'),
+      description: t('contact.info.emailDescription')
     },
     {
       icon: Phone,
-      title: "Call Us",
-      content: "+1 (555) 123-4567",
-      description: "Mon-Fri from 9am to 6pm"
+      title: t('contact.info.phone'),
+      content: t('contact.info.phoneNumber'),
+      description: t('contact.info.phoneDescription')
     },
     {
       icon: MapPin,
-      title: "Visit Us",
-      content: "123 Beauty Street, New York, NY 10001",
-      description: "Come say hello at our office"
+      title: t('contact.info.address'),
+      content: t('contact.info.addressDetails'),
+      description: t('contact.info.addressDescription')
     },
     {
       icon: Clock,
-      title: "Business Hours",
-      content: "Mon-Fri: 9AM-6PM",
-      description: "Weekend: 10AM-4PM"
+      title: t('contact.info.hours'),
+      content: t('contact.info.hoursDetails'),
+      description: t('contact.info.hoursDescription')
     }
   ];
 
@@ -69,24 +70,23 @@ const Contact = () => {
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Get in Touch
+                {t('contact.hero.title')}
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Have questions, suggestions, or just want to say hello? We'd love to hear from you. 
-              Reach out and let's start a conversation about beauty, creativity, and inspiration.
+              {t('contact.hero.subtitle')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
             {/* Contact Form */}
             <div className="bg-white rounded-2xl p-8 shadow-xl">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.form.title')}</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Your Name
+                      {t('contact.form.name')}
                     </label>
                     <input
                       type="text"
@@ -95,13 +95,13 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                      placeholder="Enter your name"
+                      placeholder={t('contact.form.namePlaceholder')}
                       required
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address
+                      {t('contact.form.email')}
                     </label>
                     <input
                       type="email"
@@ -110,7 +110,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                      placeholder="Enter your email"
+                      placeholder={t('contact.form.emailPlaceholder')}
                       required
                     />
                   </div>
@@ -118,7 +118,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject
+                    {t('contact.form.subject')}
                   </label>
                   <input
                     type="text"
@@ -127,14 +127,14 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors"
-                    placeholder="What's this about?"
+                    placeholder={t('contact.form.subjectPlaceholder')}
                     required
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
+                    {t('contact.form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -143,7 +143,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     rows={6}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell us more..."
+                    placeholder={t('contact.form.messagePlaceholder')}
                     required
                   ></textarea>
                 </div>
@@ -153,7 +153,7 @@ const Contact = () => {
                   className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg"
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Send Message
+                  {t('contact.form.send')}
                 </Button>
               </form>
             </div>
@@ -161,7 +161,7 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div className="bg-white rounded-2xl p-8 shadow-xl">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.info.title')}</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-start space-x-4">
@@ -180,12 +180,12 @@ const Contact = () => {
 
               {/* Map Placeholder */}
               <div className="bg-white rounded-2xl p-8 shadow-xl">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Find Us</h3>
+                <h3 className="text-xl font-bold text-gray-800 mb-4">{t('contact.map.title')}</h3>
                 <div className="w-full h-64 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-12 h-12 text-green-600 mx-auto mb-2" />
-                    <p className="text-gray-600">Interactive map would go here</p>
-                    <p className="text-sm text-gray-500">123 Beauty Street, New York, NY</p>
+                    <p className="text-gray-600">{t('contact.map.placeholder')}</p>
+                    <p className="text-sm text-gray-500">{t('contact.info.addressDetails')}</p>
                   </div>
                 </div>
               </div>
@@ -194,30 +194,30 @@ const Contact = () => {
 
           {/* FAQ Section */}
           <div className="bg-white rounded-2xl p-8 shadow-xl">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">{t('contact.faq.title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">How quickly do you respond to messages?</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">{t('contact.faq.response.question')}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  We typically respond within 24 hours during business days. For urgent matters, please call us directly.
+                  {t('contact.faq.response.answer')}
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Do you offer beauty consultations?</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">{t('contact.faq.consultation.question')}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Yes! We offer virtual beauty consultations. Contact us to schedule an appointment with our experts.
+                  {t('contact.faq.consultation.answer')}
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">Can I contribute content to your blog?</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">{t('contact.faq.contribute.question')}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  We welcome guest contributors! Send us your ideas and writing samples for review.
+                  {t('contact.faq.contribute.answer')}
                 </p>
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800 mb-2">How can I advertise with you?</h3>
+                <h3 className="font-semibold text-gray-800 mb-2">{t('contact.faq.advertise.question')}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  We offer various advertising opportunities. Contact our team to discuss partnership options.
+                  {t('contact.faq.advertise.answer')}
                 </p>
               </div>
             </div>

@@ -5,10 +5,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ArticleInteractions from '../components/ArticleInteractions';
 import { useInfiniteArticles, calculateReadingTime } from '../hooks/useArticles';
+import { useTranslations } from '@/hooks/useTranslations';
 
 const ManicurePage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslations();
   const {
     data,
     fetchNextPage,
@@ -16,7 +18,7 @@ const ManicurePage = () => {
     isFetchingNextPage,
     isLoading,
     error
-  } = useInfiniteArticles('Manicure & Nail Art');
+  } = useInfiniteArticles('manicure');
 
   useEffect(() => {
     setIsLoaded(true);
@@ -72,17 +74,17 @@ const ManicurePage = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg transition-all duration-1000 ${isLoaded ? 'animate-slide-down opacity-100' : 'opacity-0 -translate-y-10'}`}>
             <Hand className="w-5 h-5 text-rose-500 animate-bounce-gentle" />
-            <span className="text-sm font-medium text-gray-700">Nail Art & Manicure</span>
+            <span className="text-sm font-medium text-gray-700">{t('categories.manicure.title')}</span>
           </div>
           
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
             <span className="bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-              Manicure & Nail Art
+              {t('categories.manicure.title')}
             </span>
           </h1>
           
           <p className={`text-xl text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
-            Express your creativity through stunning nail designs and professional manicure techniques
+            {t('categories.manicure.description')}
           </p>
         </div>
       </section>
@@ -96,22 +98,22 @@ const ManicurePage = () => {
                 <div className="animate-fade-in">
                   <div className="flex items-center space-x-2 mb-4">
                     <Star className="w-5 h-5 text-rose-500" />
-                    <span className="text-sm font-medium text-rose-600">Featured Article</span>
+                    <span className="text-sm font-medium text-rose-600">{t('featuredArticles.badge')}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                     {featuredArticle.title}
                   </h2>
                   <p className="text-xl text-gray-600 mb-6">
-                    {featuredArticle.excerpt || 'Discover amazing nail art techniques and trends in this featured article.'}
+                    {featuredArticle.excerpt || t('featuredArticles.noExcerpt')}
                   </p>
                   <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="w-4 h-4" />
-                      <span>{featuredArticle.profiles?.full_name || 'Beauty Expert'}</span>
+                      <span>{featuredArticle.profiles?.full_name || t('featuredArticles.anonymous')}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
-                      <span>{calculateReadingTime(featuredArticle.content || '')} min read</span>
+                      <span>{calculateReadingTime(featuredArticle.content || '')} {t('common.minRead')}</span>
                     </div>
                   </div>
                   <ArticleInteractions articleId={featuredArticle.id} className="mb-6" />
@@ -119,7 +121,7 @@ const ManicurePage = () => {
                     onClick={() => handleArticleClick(featuredArticle.id)}
                     className="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2"
                   >
-                    <span>Read Article</span>
+                    <span>{t('featuredArticles.readMore')}</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -141,7 +143,7 @@ const ManicurePage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-            Latest Manicure Articles
+            {t('pages.manicure.latestArticles')}
           </h2>
           
           {regularArticles.length > 0 ? (
@@ -172,18 +174,18 @@ const ManicurePage = () => {
                           {article.title}
                         </h3>
                         <p className="text-gray-600 mb-4 line-clamp-3">
-                          {article.excerpt || (article.content ? article.content.substring(0, 150) + '...' : 'Discover amazing nail art techniques and styling tips in this comprehensive guide.')}
+                          {article.excerpt || (article.content ? article.content.substring(0, 150) + '...' : t('featuredArticles.noExcerpt'))}
                         </p>
 
                         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                           <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-1">
                               <User className="w-4 h-4" />
-                              <span>{article.profiles?.full_name || 'Beauty Expert'}</span>
+                              <span>{article.profiles?.full_name || t('featuredArticles.anonymous')}</span>
                             </div>
                             <div className="flex items-center space-x-1">
                               <Clock className="w-4 h-4" />
-                              <span>{readingTime} min read</span>
+                              <span>{readingTime} {t('common.minRead')}</span>
                             </div>
                           </div>
                         </div>
@@ -191,7 +193,7 @@ const ManicurePage = () => {
                         <div className="flex items-center justify-between">
                           <ArticleInteractions articleId={article.id} />
                           <button className="flex items-center space-x-2 text-rose-600 font-semibold group-hover:space-x-3 transition-all duration-300">
-                            <span>Read More</span>
+                            <span>{t('featuredArticles.readMore')}</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </button>
                         </div>
@@ -210,13 +212,13 @@ const ManicurePage = () => {
               
               {!hasNextPage && regularArticles.length > 0 && (
                 <div className="text-center mt-12">
-                  <p className="text-gray-500">You've reached the end of all articles</p>
+                  <p className="text-gray-500">{t('pages.common.endOfArticles')}</p>
                 </div>
               )}
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-gray-600 text-lg">No articles available yet. Check back soon!</p>
+              <p className="text-gray-600 text-lg">{t('pages.common.noArticles')}</p>
             </div>
           )}
         </div>

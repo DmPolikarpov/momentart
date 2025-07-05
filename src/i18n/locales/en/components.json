@@ -1,0 +1,138 @@
+{
+  "beautyQuiz": {
+    "badge": "Interactive Quiz",
+    "title": "Which Manicure Suits You?",
+    "description": "Discover your perfect nail style with our personalized beauty quiz",
+    "questions": {
+      "lifestyle": "What's your lifestyle like?",
+      "colors": "Which colors appeal to you most?",
+      "maintenance": "How do you prefer to maintain your nails?",
+      "length": "What's your ideal nail length?"
+    },
+    "answers": {
+      "active": "Very active and busy",
+      "relaxed": "Relaxed and laid-back",
+      "professional": "Professional and polished",
+      "creative": "Creative and expressive",
+      "pastels": "Soft pastels and nudes",
+      "bold": "Bold reds and deep colors",
+      "earthy": "Earthy and natural tones",
+      "bright": "Bright and vibrant shades",
+      "lowMaintenance": "Low maintenance, quick touch-ups",
+      "salon": "Regular salon visits",
+      "diy": "DIY at home with quality products",
+      "experiment": "Frequent changes and experimenting",
+      "short": "Short and practical",
+      "medium": "Medium length",
+      "long": "Long and dramatic",
+      "varies": "Varies by mood"
+    },
+    "results": {
+      "complete": "Quiz Complete!",
+      "perfectMatch": "Your Perfect Match",
+      "recommendedFor": "Recommended for You:",
+      "takeAgain": "Take Quiz Again",
+      "types": {
+        "elegant": {
+          "title": "Classic Elegance",
+          "description": "You appreciate timeless beauty and sophisticated style. Your ideal manicure features clean lines, subtle colors, and impeccable finish.",
+          "recommendations": [
+            "French manicure with a modern twist",
+            "Nude and blush pink shades",
+            "Matte top coats for sophistication",
+            "Minimalist nail art"
+          ]
+        },
+        "bold": {
+          "title": "Bold & Beautiful",
+          "description": "You love to make a statement with your style. Your perfect manicure features vibrant colors, dramatic designs, and eye-catching elements.",
+          "recommendations": [
+            "Rich jewel tones and metallics",
+            "Textured and 3D nail art",
+            "Chrome and holographic finishes",
+            "Artistic geometric patterns"
+          ]
+        },
+        "natural": {
+          "title": "Natural Beauty",
+          "description": "You prefer understated elegance that enhances your natural beauty. Your ideal manicure is effortless, healthy-looking, and versatile.",
+          "recommendations": [
+            "Clear and sheer polishes",
+            "Cuticle care and nail strengthening",
+            "Neutral and earthy tones",
+            "Simple, clean designs"
+          ]
+        }
+      }
+    },
+    "progress": {
+      "question": "Question",
+      "of": "of"
+    }
+  },
+  "expertRecommends": {
+    "badge": "Expert Insights",
+    "title": "Experts Recommend",
+    "description": "Get exclusive tips and insights from the industry's leading beauty professionals",
+    "viewInterview": "View Interview",
+    "expertInterview": "Expert Interview",
+    "proTips": "Pro Tips",
+    "experts": {
+      "emma": {
+        "title": "Celebrity Nail Artist",
+        "specialization": "Manicure & Nail Art",
+        "experience": "12+ years",
+        "interview": "The secret to perfect nails isn't just in the technique—it's in understanding each client's lifestyle and personality. Every nail tells a story.",
+        "tips": [
+          "Always prep the nail bed properly",
+          "Use thin coats for lasting results",
+          "Seal the edges for chip resistance"
+        ]
+      },
+      "sophia": {
+        "title": "Master Lash Technician",
+        "specialization": "Eyelash Extensions",
+        "experience": "8+ years",
+        "interview": "Creating beautiful lashes is an art form. It's about enhancing natural beauty while ensuring comfort and longevity.",
+        "tips": [
+          "Map lashes for perfect symmetry",
+          "Choose length based on eye shape",
+          "Proper isolation prevents damage"
+        ]
+      },
+      "maria": {
+        "title": "Dermatologist & Beauty Expert",
+        "specialization": "Advanced Skincare",
+        "experience": "15+ years",
+        "interview": "Skincare is not just about products—it's about understanding your skin's unique needs and creating a personalized routine.",
+        "tips": [
+          "Consistency is key to results",
+          "Less is often more with actives",
+          "Always patch test new products"
+        ]
+      },
+      "isabella": {
+        "title": "Color Theory Specialist",
+        "specialization": "Nail Color Matching",
+        "experience": "10+ years",
+        "interview": "Color has the power to transform not just how you look, but how you feel. Finding your perfect shade is like finding your signature.",
+        "tips": [
+          "Consider undertones when choosing colors",
+          "Seasonal changes affect what looks best",
+          "Don't be afraid to mix and match"
+        ]
+      }
+    }
+  },
+  "imageUpload": {
+    "noImages": "No images found",
+    "imagesOnly": "Please drop image files only",
+    "tooManyImages": "Too many images",
+    "maxImagesAllowed": "Maximum {{max}} images allowed",
+    "dropImages": "Drop images here",
+    "or": "or",
+    "browseFiles": "browse files",
+    "maxImages": "Maximum {{max}} images ({{current}}/{{max}})",
+    "uploadAlt": "Upload {{index}}"
+  }
+}

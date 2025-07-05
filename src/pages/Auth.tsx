@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Sparkles, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/useToast';
+import { useTranslations } from '@/hooks/useTranslations';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -17,6 +18,7 @@ const Auth = () => {
   });
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslations();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -48,8 +50,8 @@ const Auth = () => {
         if (error) throw error;
 
         toast({
-          title: "Account created!",
-          description: "Please check your email to verify your account.",
+          title: t('auth.accountCreated'),
+          description: t('auth.checkEmailVerification'),
         });
       } else {
         const { error } = await supabase.auth.signInWithPassword({
@@ -60,14 +62,14 @@ const Auth = () => {
         if (error) throw error;
 
         toast({
-          title: "Welcome back!",
-          description: "You have successfully signed in.",
+          title: t('auth.welcomeBack'),
+          description: t('auth.signInSuccess'),
         });
         navigate('/');
       }
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -116,7 +118,7 @@ const Auth = () => {
           className="mb-6 text-gray-600 hover:text-rose-500"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Home
+          {t('auth.backToHome')}
         </Button>
 
         {/* Auth Card */}
@@ -130,12 +132,12 @@ const Auth = () => {
               </span>
             </div>
             <h1 className="text-2xl font-bold text-gray-800 mb-2">
-              {isSignUp ? 'Create Account' : 'Welcome Back'}
+              {isSignUp ? t('auth.createAccount') : t('auth.welcomeBack')}
             </h1>
             <p className="text-gray-600">
               {isSignUp 
-                ? 'Join our beauty community today' 
-                : 'Sign in to access your beauty dashboard'
+                ? t('auth.joinCommunity')
+                : t('auth.signInToDashboard')
               }
             </p>
           </div>
@@ -145,7 +147,7 @@ const Auth = () => {
             {isSignUp && (
               <div className="space-y-2">
                 <Label htmlFor="fullName" className="text-gray-700 font-medium">
-                  Full Name
+                  {t('auth.fullName')}
                 </Label>
                 <div className="relative">
                   <User className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
@@ -157,7 +159,7 @@ const Auth = () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className="pl-10 h-12 border-gray-200 focus:border-rose-300 focus:ring-rose-200"
-                    placeholder="Enter your full name"
+                    placeholder={t('auth.fullNamePlaceholder')}
                   />
                 </div>
               </div>
@@ -165,7 +167,7 @@ const Auth = () => {
 
             <div className="space-y-2">
               <Label htmlFor="email" className="text-gray-700 font-medium">
-                Email Address
+                {t('auth.emailAddress')}
               </Label>
               <div className="relative">
                 <Mail className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
@@ -177,14 +179,14 @@ const Auth = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className="pl-10 h-12 border-gray-200 focus:border-rose-300 focus:ring-rose-200"
-                  placeholder="Enter your email"
+                  placeholder={t('auth.emailPlaceholder')}
                 />
               </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="password" className="text-gray-700 font-medium">
-                Password
+                {t('auth.password')}
               </Label>
               <div className="relative">
                 <Lock className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
@@ -196,7 +198,7 @@ const Auth = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   className="pl-10 h-12 border-gray-200 focus:border-rose-300 focus:ring-rose-200"
-                  placeholder="Enter your password"
+                  placeholder={t('auth.passwordPlaceholder')}
                   minLength={6}
                 />
               </div>
@@ -210,27 +212,27 @@ const Auth = () => {
               {loading ? (
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  <span>{isSignUp ? 'Creating Account...' : 'Signing In...'}</span>
+                  <span>{isSignUp ? t('auth.creatingAccount') : t('auth.signingIn')}</span>
                 </div>
               ) : (
-                isSignUp ? 'Create Account' : 'Sign In'
+                isSignUp ? t('auth.createAccount') : t('auth.signIn')
               )}
             </Button>
           </form>
 
           {/* Toggle between Sign In and Sign Up */}
-          {/* <div className="mt-6 text-center">
+          <div className="mt-6 text-center">
             <p className="text-gray-600">
-              {isSignUp ? 'Already have an account?' : "Don't have an account?"}
+              {isSignUp ? t('auth.alreadyHaveAccount') : t('auth.dontHaveAccount')}
               <button
                 type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
                 className="ml-2 text-rose-500 hover:text-rose-600 font-medium transition-colors"
               >
-                {isSignUp ? 'Sign In' : 'Sign Up'}
+                {isSignUp ? t('auth.signIn') : t('auth.signUp')}
               </button>
             </p>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

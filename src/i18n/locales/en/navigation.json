@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "about": "About",
+    "contact": "Contact",
+    "tutorials": "Tutorials",
+    "artists": "Artists",
+    "collections": "Collections",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "admin": "Admin"
+  }
+}

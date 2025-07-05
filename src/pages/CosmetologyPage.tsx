@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useInfiniteArticles, calculateReadingTime } from '../hooks/useArticles';
+import { useTranslations } from '../hooks/useTranslations';
 
 const CosmetologyPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslations();
   const {
     data,
     fetchNextPage,
@@ -15,7 +17,7 @@ const CosmetologyPage = () => {
     isFetchingNextPage,
     isLoading,
     error
-  } = useInfiniteArticles('Cosmetology Trends');
+  } = useInfiniteArticles('cosmetology');
 
   useEffect(() => {
     setIsLoaded(true);
@@ -72,17 +74,17 @@ const CosmetologyPage = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg transition-all duration-1000 ${isLoaded ? 'animate-slide-down opacity-100' : 'opacity-0 -translate-y-10'}`}>
             <Beaker className="w-5 h-5 text-amber-500 animate-bounce-gentle" />
-            <span className="text-sm font-medium text-gray-700">Cosmetology & Science</span>
+            <span className="text-sm font-medium text-gray-700">{t('categories.cosmetology.title')}</span>
           </div>
           
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
             <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
-              Cosmetology Trends
+              {t('categories.cosmetology.title')}
             </span>
           </h1>
           
           <p className={`text-xl text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
-            Discover the science behind beauty with cutting-edge research and innovative treatments
+            {t('categories.cosmetology.description')}
           </p>
         </div>
       </section>
@@ -96,29 +98,29 @@ const CosmetologyPage = () => {
                 <div className="animate-fade-in">
                   <div className="flex items-center space-x-2 mb-4">
                     <Star className="w-5 h-5 text-amber-500" />
-                    <span className="text-sm font-medium text-amber-600">Scientific Breakthrough</span>
+                    <span className="text-sm font-medium text-amber-600">{t('pages.cosmetology.scientificBreakthrough')}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                     {featuredArticle.title}
                   </h2>
                   <p className="text-xl text-gray-600 mb-6">
-                    {featuredArticle.excerpt || 'Explore the latest scientific breakthroughs in cosmetology and beauty treatments.'}
+                    {featuredArticle.excerpt || t('pages.cosmetology.defaultExcerpt')}
                   </p>
                   <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="w-4 h-4" />
-                      <span>{featuredArticle.profiles?.full_name || 'Beauty Scientist'}</span>
+                      <span>{featuredArticle.profiles?.full_name || t('pages.cosmetology.beautyScientist')}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
-                      <span>{calculateReadingTime(featuredArticle.content || '')} min read</span>
+                      <span>{calculateReadingTime(featuredArticle.content || '')} {t('common.minRead')}</span>
                     </div>
                   </div>
                   <button 
                     onClick={() => handleArticleClick(featuredArticle.id)}
                     className="bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2"
                   >
-                    <span>Read Research</span>
+                    <span>{t('pages.cosmetology.readResearch')}</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </div>
@@ -140,7 +142,7 @@ const CosmetologyPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-            Latest Research & Innovations
+            {t('pages.cosmetology.latestArticles')}
           </h2>
           
           {regularArticles.length > 0 ? (
@@ -171,24 +173,24 @@ const CosmetologyPage = () => {
                           {article.title}
                         </h3>
                         <p className="text-gray-600 mb-4 line-clamp-3">
-                          {article.excerpt || (article.content ? article.content.substring(0, 150) + '...' : 'Discover the latest innovations and scientific research in cosmetology.')}
+                          {article.excerpt || (article.content ? article.content.substring(0, 150) + '...' : t('pages.cosmetology.defaultDescription'))}
                         </p>
 
                         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                           <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-1">
                               <User className="w-4 h-4" />
-                              <span>{article.profiles?.full_name || 'Beauty Scientist'}</span>
+                              <span>{article.profiles?.full_name || t('pages.cosmetology.beautyScientist')}</span>
                             </div>
                             <div className="flex items-center space-x-1">
                               <Clock className="w-4 h-4" />
-                              <span>{readingTime} min read</span>
+                              <span>{readingTime} {t('common.minRead')}</span>
                             </div>
                           </div>
                         </div>
 
                         <button className="flex items-center space-x-2 text-amber-600 font-semibold group-hover:space-x-3 transition-all duration-300">
-                          <span>Read More</span>
+                          <span>{t('featuredArticles.readMore')}</span>
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </button>
                       </div>
@@ -206,13 +208,13 @@ const CosmetologyPage = () => {
               
               {!hasNextPage && regularArticles.length > 0 && (
                 <div className="text-center mt-12">
-                  <p className="text-gray-500">You've reached the end of all articles</p>
+                  <p className="text-gray-500">{t('pages.common.endOfArticles')}</p>
                 </div>
               )}
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-gray-600 text-lg">No articles available yet. Check back soon!</p>
+              <p className="text-gray-600 text-lg">{t('pages.common.noArticles')}</p>
             </div>
           )}
         </div>

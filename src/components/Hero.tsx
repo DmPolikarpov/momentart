@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Star, Palette } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
@@ -72,7 +74,7 @@ const Hero = () => {
           {/* Floating Badge */}
           <div className={`inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg transition-all duration-1000 ${isLoaded ? 'animate-slide-down opacity-100' : 'opacity-0 -translate-y-10'}`}>
             <Star className="w-5 h-5 text-green-500 animate-spin-slow" />
-            <span className="text-sm font-medium text-gray-700">Creative Inspiration & Artistic Trends</span>
+            <span className="text-sm font-medium text-gray-700">{t('hero.badge')}</span>
           </div>
 
           {/* Main Heading with Advanced Animation */}
@@ -81,13 +83,12 @@ const Hero = () => {
               Moment Art
             </span>
             <br />
-            <span className="text-gray-800 animate-slide-up">Gallery</span>
+            <span className="text-gray-800 animate-slide-up">{t('hero.subtitle')}</span>
           </h1>
 
           {/* Subtitle with Fade-in from Bottom */}
           <p className={`text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
-            Discover stunning artworks, connect with talented artists, and find your creative inspiration. 
-            Your ultimate destination for artistic expression.
+            {t('hero.description')}
           </p>
 
           {/* Enhanced CTA Buttons */}
@@ -97,12 +98,12 @@ const Hero = () => {
               className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 hover:from-green-600 hover:to-emerald-700 animate-pulse-button"
             >
               <span className="flex items-center justify-center space-x-2">
-                <span>Explore Gallery</span>
+                <span>{t('hero.exploreGallery')}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
               </span>
             </button>
             <button className="bg-white/80 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-green-200">
-              Join Community
+              {t('hero.joinCommunity')}
             </button>
           </div>
         </div>

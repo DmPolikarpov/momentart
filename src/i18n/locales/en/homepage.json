@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "badge": "Creative Inspiration & Artistic Trends",
+    "title": "Moment Art",
+    "subtitle": "Gallery",
+    "description": "Discover stunning artworks, connect with talented artists, and find your creative inspiration. Your ultimate destination for artistic expression.",
+    "exploreGallery": "Explore Gallery",
+    "joinCommunity": "Join Community"
+  },
+  "categories": {
+    "title": "Explore Categories",
+    "subtitle": "Discover amazing beauty techniques across different specialties",
+    "manicure": {
+      "title": "Manicure & Nail Art",
+      "description": "Latest trends in nail design, colors, and techniques"
+    },
+    "eyelashes": {
+      "title": "Eyelash Extensions",
+      "description": "Professional tips and stunning lash transformations"
+    },
+    "cosmetology": {
+      "title": "Cosmetology Trends",
+      "description": "Beauty innovations and industry breakthroughs"
+    },
+    "skincare": {
+      "title": "Skincare & Wellness",
+      "description": "Holistic approaches to beauty and self-care"
+    },
+    "articles": "Articles",
+    "loading": "Loading categories...",
+    "explore": "Explore"
+  },
+  "trendGallery": {
+    "badge": "Trending Now",
+    "title": "Beauty Trends",
+    "subtitle": "2024 Edition",
+    "description": "Stay ahead of the curve with the latest beauty innovations and trending styles curated by our expert team.",
+    "viewMore": "View More",
+    "trendingTopics": "Trending Topics",
+    "topics": {
+      "nailArt": "Nail Art",
+      "lashTech": "Lash Tech",
+      "skincare": "Skincare",
+      "makeup": "Makeup"
+    }
+  },
+  "newsletter": {
+    "badge": "Join Our Beauty Community",
+    "title": "Never Miss a Beauty Moment",
+    "description": "Get exclusive beauty tips, trending tutorials, and early access to the latest nail art designs delivered straight to your inbox.",
+    "placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "subscribed": "Subscribed!",
+    "disclaimer": "Join 50,000+ beauty enthusiasts. Unsubscribe anytime.",
+    "features": {
+      "tips": "Weekly Tips",
+      "content": "Exclusive Content",
+      "alerts": "Trend Alerts"
+    }
+  }
+}

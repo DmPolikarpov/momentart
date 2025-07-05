@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, User, LogOut, ChevronDown, Settings, Shield } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-// import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/hooks/useToast';
+import LanguageSwitcher from './LanguageSwitcher';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -15,7 +18,7 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-//   const { toast } = useToast();
+  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,25 +78,29 @@ const Header = () => {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
       
-      // toast({
-      //   title: "Signed out",
-      //   description: "You have been successfully signed out.",
-      // });
+      toast({
+        title: "Signed out",
+        description: "You have been successfully signed out.",
+      });
       navigate('/');
     } catch (error: any) {
-      // toast({
-      //   title: "Error",
-      //   description: error.message,
-      //   variant: "destructive",
-      // });
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
     }
   };
 
+  const setTextColor = () => {
+    return isScrolled ? 'text-gray-700' : 'text-gray-300'
+  }
+
   const categories = [
-    { name: 'Manicure & Nail Art', path: '/manicure' },
-    { name: 'Eyelash Extensions', path: '/eyelashes' },
-    { name: 'Cosmetology Trends', path: '/cosmetology' },
-    { name: 'Skincare & Wellness', path: '/skincare-wellness' },
+    { name: t('categories.manicure.title'), path: '/manicure' },
+    { name: t('categories.eyelashes.title'), path: '/eyelashes' },
+    { name: t('categories.cosmetology.title'), path: '/cosmetology' },
+    { name: t('categories.skincare.title'), path: '/skincare-wellness' },
   ];
 
   return (
@@ -104,7 +111,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center space-x-3 group cursor-pointer" onClick={() => navigate('/')}>
             <img 
-              src="/src/assets/logo.png" 
+              src="src/assets/logo.png" 
               alt="Moment Art Logo" 
               className="w-10 h-10 transition-transform group-hover:scale-110" 
             />
@@ -117,20 +124,19 @@ const Header = () => {
             <a
               href="#"
               onClick={() => navigate('/')}
-              className="text-gray-700 hover:text-green-500 transition-all duration-300 relative group font-medium"
+              className={`${setTextColor()} hover:text-green-500 transition-all duration-300 relative group font-medium`}
             >
-              Home
+              {t('nav.home')}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
 
             {/* Categories Dropdown */}
-            {/* <div className="relative">
+            <div className="relative">
               <button
-                onMouseEnter={() => setIsCategoriesOpen(true)}
-                onMouseLeave={() => setIsCategoriesOpen(false)}
-                className="flex items-center space-x-1 text-gray-700 hover:text-green-500 transition-all duration-300 relative group font-medium"
+                className={`flex items-center space-x-1 ${setTextColor()} hover:text-green-500 transition-all duration-300 relative group font-medium`}
+                onClick={() => setIsCategoriesOpen(true)}
               >
-                <span>Categories</span>
+                <span>{t('nav.categories')}</span>
                 <ChevronDown className="w-4 h-4" />
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
               </button>
@@ -144,35 +150,59 @@ const Header = () => {
                   {categories.map((category) => (
                     <button
                       key={category.path}
-                      onClick={() => navigate(category.path)}
-                      className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-500 hover:bg-green-50 transition-all duration-200"
+                      onClick={() => {
+                        navigate(category.path);
+                        setIsCategoriesOpen(false);
+                      }}
+                      className={`block w-full text-left px-4 py-3 ${setTextColor()} hover:text-green-500 hover:bg-green-50 transition-all duration-200`}
                     >
                       {category.name}
                     </button>
                   ))}
                 </div>
               )}
-            </div> */}
+            </div>
 
-            {categories.map((item) => (
-              <div
-                key={item.name}
-                onClick={() => navigate(item.path)}
-                className="text-gray-700 hover:text-green-500 transition-all duration-300 relative group font-medium cursor-pointer"
+            <a
+              href="#"
+              onClick={() => navigate('/about')}
+              className={`${setTextColor()} hover:text-green-500 transition-all duration-300 relative group font-medium`}
+            >
+              {t('nav.about')}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            <a
+              href="#"
+              onClick={() => navigate('/contact')}
+              className={`${setTextColor()} hover:text-green-500 transition-all duration-300 relative group font-medium`}
+            >
+              {t('nav.contact')}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
+            {/* {[t('nav.tutorials'), t('nav.artists'), t('nav.collections')].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-gray-700 hover:text-green-500 transition-all duration-300 relative group font-medium"
               >
-                {item.name}
+                {item}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
-              </div>
-            ))}
+              </a>
+            ))} */}
+            
+            {/* Language Switcher */}
+            <LanguageSwitcher />
             
             {/* Auth Section */}
             {!loading && (
               <div className="flex items-center space-x-4 ml-4">
-                {user && isAdmin ? (
+                {user ? (
                   <div className="relative">
                     <button
                       onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                      className="flex items-center space-x-2 text-gray-700 hover:text-green-500 transition-colors"
+                      className={`flex items-center space-x-2 ${setTextColor()} hover:text-green-500 transition-colors`}
                     >
                       <User className="w-5 h-5" />
                       <span className="text-sm font-medium">
@@ -191,7 +221,7 @@ const Header = () => {
                           className="flex items-center w-full px-4 py-2 text-gray-700 hover:text-green-500 hover:bg-green-50 transition-colors"
                         >
                           <Settings className="w-4 h-4 mr-2" />
-                          Profile
+                          {t('nav.profile')}
                         </button>
                         {isAdmin && (
                           <button
@@ -202,7 +232,7 @@ const Header = () => {
                             className="flex items-center w-full px-4 py-2 text-gray-700 hover:text-green-500 hover:bg-green-50 transition-colors"
                           >
                             <Shield className="w-4 h-4 mr-2" />
-                            Admin
+                            {t('nav.admin')}
                           </button>
                         )}
                         <hr className="my-2" />
@@ -211,19 +241,18 @@ const Header = () => {
                           className="flex items-center w-full px-4 py-2 text-gray-700 hover:text-red-500 hover:bg-red-50 transition-colors"
                         >
                           <LogOut className="w-4 h-4 mr-2" />
-                          Sign Out
+                          {t('nav.signOut')}
                         </button>
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className='none'></div>
-                  // <Button
-                  //   onClick={() => navigate('/auth')}
-                  //   className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
-                  // >
-                  //   Sign In
-                  // </Button>
+                  <Button
+                    onClick={() => navigate('/auth')}
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-lg"
+                  >
+                    {t('nav.signIn')}
+                  </Button>
                 )}
               </div>
             )}
@@ -246,7 +275,7 @@ const Header = () => {
               onClick={() => navigate('/')}
               className="block w-full text-left text-gray-700 hover:text-green-500 transition-colors font-medium"
             >
-              Home
+              {t('nav.home')}
             </button>
             
             {categories.map((category) => (
@@ -258,8 +287,22 @@ const Header = () => {
                 {category.name}
               </button>
             ))}
+
+            <button
+              onClick={() => navigate('/about')}
+              className="block w-full text-left text-gray-700 hover:text-green-500 transition-colors font-medium"
+            >
+              {t('nav.about')}
+            </button>
+
+            <button
+              onClick={() => navigate('/contact')}
+              className="block w-full text-left text-gray-700 hover:text-green-500 transition-colors font-medium"
+            >
+              {t('nav.contact')}
+            </button>
             
-            {/* {['Tutorials', 'Artists', 'Collections', 'Inspiration'].map((item) => (
+            {/* {[t('nav.tutorials'), t('nav.artists'), t('nav.collections')].map((item) => (
               <a
                 key={item}
                 href="#"
@@ -268,6 +311,11 @@ const Header = () => {
                 {item}
               </a>
             ))} */}
+            
+            {/* Mobile Language Switcher */}
+            <div className="pt-2 border-t border-gray-200">
+              <LanguageSwitcher />
+            </div>
             
             {/* Mobile Auth Section */}
             {!loading && (
@@ -285,7 +333,7 @@ const Header = () => {
                       className="flex items-center w-full text-gray-600 hover:text-green-500"
                     >
                       <Settings className="w-4 h-4 mr-2" />
-                      Profile
+                      {t('nav.profile')}
                     </button>
                     {isAdmin && (
                       <button
@@ -293,7 +341,7 @@ const Header = () => {
                         className="flex items-center w-full text-gray-600 hover:text-green-500"
                       >
                         <Shield className="w-4 h-4 mr-2" />
-                        Admin
+                        {t('nav.admin')}
                       </button>
                     )}
                     <Button
@@ -302,7 +350,7 @@ const Header = () => {
                       className="w-full justify-start text-gray-600 hover:text-green-500"
                     >
                       <LogOut className="w-4 h-4 mr-2" />
-                      Sign Out
+                      {t('nav.signOut')}
                     </Button>
                   </div>
                 ) : (
@@ -310,7 +358,7 @@ const Header = () => {
                     onClick={() => navigate('/auth')}
                     className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-2 rounded-full font-medium transition-all duration-300"
                   >
-                    Sign In
+                    {t('nav.signIn')}
                   </Button>
                 )}
               </div>

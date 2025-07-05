@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Clock, User, Heart, Eye, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,16 +7,17 @@ import Footer from '../components/Footer';
 import { useArticlesWithStats } from '../hooks/useArticles';
 
 const Gallery = () => {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const navigate = useNavigate();
   const { data: articlesWithStats = [], isLoading } = useArticlesWithStats();
 
   const categories = [
-    { id: 'all', name: 'All Articles', color: 'from-purple-500 to-rose-500' },
-    { id: 'Manicure & Nail Art', name: 'Manicure', color: 'from-rose-500 to-pink-600' },
-    { id: 'Eyelash Extensions', name: 'Eyelashes', color: 'from-purple-500 to-violet-600' },
-    { id: 'Cosmetology Trends', name: 'Cosmetology', color: 'from-amber-500 to-orange-600' },
-    { id: 'Skincare & Wellness', name: 'Skincare & Wellness', color: 'from-emerald-500 to-green-600' }
+    { id: 'all', name: t('All Articles'), color: 'from-purple-500 to-rose-500' },
+    { id: 'Manicure & Nail Art', name: t('Manicure'), color: 'from-rose-500 to-pink-600' },
+    { id: 'Eyelash Extensions', name: t('Eyelashes'), color: 'from-purple-500 to-violet-600' },
+    { id: 'Cosmetology Trends', name: t('Cosmetology'), color: 'from-amber-500 to-orange-600' },
+    { id: 'Skincare & Wellness', name: t('Skincare & Wellness'), color: 'from-emerald-500 to-green-600' }
   ];
 
   const filteredArticles = selectedCategory === 'all' 
@@ -68,11 +70,11 @@ const Gallery = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent">
-              Beauty Gallery
+              {t('gallery.title')}
             </span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Discover our complete collection of beauty articles, tutorials, and inspiration
+            {t('gallery.description')}
           </p>
         </div>
       </section>
@@ -111,7 +113,7 @@ const Gallery = () => {
             <>
               <div className="text-center mb-8">
                 <p className="text-gray-600">
-                  Showing {filteredArticles.length} {selectedCategory === 'all' ? 'articles' : `${selectedCategory} articles`}
+                  {t('gallery.showing')} {filteredArticles.length} {selectedCategory === 'all' ? t('categories.articles') : `${selectedCategory} ${t('categories.articles')}`}
                 </p>
               </div>
               
@@ -167,17 +169,17 @@ const Gallery = () => {
                         <div className="flex items-center space-x-3">
                           <div className="flex items-center space-x-1">
                             <User className="w-3 h-3" />
-                            <span>Expert</span>
+                            <span>{t('common.expert')}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <Clock className="w-3 h-3" />
-                            <span>5 min read</span>
+                            <span>5 {t('common.minRead')}</span>
                           </div>
                         </div>
                       </div>
 
                       <button className="flex items-center space-x-2 text-purple-600 font-semibold group-hover:space-x-3 transition-all duration-300 text-sm">
-                        <span>Read More</span>
+                        <span>{t('gallery.readMore')}</span>
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </div>
@@ -188,7 +190,7 @@ const Gallery = () => {
           ) : (
             <div className="text-center py-16">
               <p className="text-gray-600 text-lg">
-                No articles found in the {selectedCategory} category. Check back soon!
+                {t('gallery.noArticles', { category: selectedCategory })}
               </p>
             </div>
           )}

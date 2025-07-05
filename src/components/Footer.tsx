@@ -1,8 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -14,14 +17,28 @@ const Footer = () => {
     { icon: Youtube, href: "#", color: "hover:text-red-500" }
   ];
 
+  // const footerLinks = {
+  //   // 'Art Categories': ['Digital Art', 'Paintings', 'Sculptures', 'Photography', 'Mixed Media'],
+  //   // 'Resources': ['Art Tutorials', 'Inspiration', 'Artist Profiles', 'Creative Challenges', 'Art News'],
+  //   // 'Company': [
+  //   //   {name: 'About Us', link: '/about'}, 
+  //   //   {name: 'Contact', link: '/contact'}
+  //   // ]
+    
+  //   // 'Company': ['About Us', 'Contact', 'Careers', 'Privacy Policy', 'Terms of Service']
+  // };
+
   const footerLinks = {
-    // 'Art Categories': ['Digital Art', 'Paintings', 'Sculptures', 'Photography', 'Mixed Media'],
-    // 'Resources': ['Art Tutorials', 'Inspiration', 'Artist Profiles', 'Creative Challenges', 'Art News'],
-    'Company': [
-      {name: 'About Us', link: '/about'}, 
-      {name: 'Contact', link: '/contact'}
+    [t('footer.company')]: [
+      {
+        name: t('footer.aboutUs'),
+        link: '/about'
+      }, 
+      {
+        name: t('footer.contact'),
+        link: '/contact'
+      }
     ]
-    // 'Company': ['About Us', 'Contact', 'Careers', 'Privacy Policy', 'Terms of Service']
   };
 
   return (
@@ -47,7 +64,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Your ultimate destination for artistic inspiration, creative community, and discovering the latest trends in contemporary art and design.
+              {t('footer.description')}
             </p>
             {/* <div className="flex lg:justify-center space-x-4">
               {socialLinks.map((social, index) => (
@@ -115,8 +132,8 @@ const Footer = () => {
                 <MapPin className="w-5 h-5 text-teal-400" />
               </div>
               <div>
-                <p className="text-sm text-gray-400">Location</p>
-                <p className="text-white">Russia</p>
+                <p className="text-sm text-gray-400">{t('footer.location')}</p>
+                <p className="text-white">{t('footer.Russia')}</p>
               </div>
             </div>
           </div>
@@ -125,17 +142,17 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2025 Moment Art. All rights reserved.
+            {t('footer.copyright')}
           </p>
           {/* <div className="flex space-x-6 text-sm">
             <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </a>
             <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-              Terms of Service
+              {t('footer.termsOfService')}
             </a>
             <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-              Cookie Policy
+              {t('footer.cookiePolicy')}
             </a>
           </div> */}
         </div>

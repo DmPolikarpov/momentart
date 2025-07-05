@@ -2,43 +2,45 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, Eye, Hand, Heart } from 'lucide-react';
 import { useArticles } from '@/hooks/useArticles';
+import { useTranslations } from '@/hooks/useTranslations';
 
 const Categories = () => {
   const navigate = useNavigate();
   const { data: allArticles = [], isLoading } = useArticles();
+  const { t } = useTranslations();
 
   const categoryConfig = [
     {
       icon: Hand,
-      title: "Manicure & Nail Art",
-      description: "Latest trends in nail design, colors, and techniques",
+      title: t('categories.manicure.title'),
+      description: t('categories.manicure.description'),
       color: "from-rose-400 to-pink-500",
       path: "/manicure",
-      categoryKey: "Manicure & Nail Art"
+      categoryKey: "manicure"
     },
     {
       icon: Eye,
-      title: "Eyelash Extensions",
-      description: "Professional tips and stunning lash transformations",
+      title: t('categories.eyelashes.title'),
+      description: t('categories.eyelashes.description'),
       color: "from-purple-400 to-pink-500",
       path: "/eyelashes",
-      categoryKey: "Eyelash Extensions"
+      categoryKey: "eyelashes"
     },
     {
       icon: Sparkles,
-      title: "Cosmetology Trends",
-      description: "Beauty innovations and industry breakthroughs",
+      title: t('categories.cosmetology.title'),
+      description: t('categories.cosmetology.description'),
       color: "from-amber-400 to-rose-500",
       path: "/cosmetology",
-      categoryKey: "Cosmetology Trends"
+      categoryKey: "cosmetology"
     },
     {
       icon: Heart,
-      title: "Skincare & Wellness",
-      description: "Holistic approaches to beauty and self-care",
+      title: t('categories.skincare.title'),
+      description: t('categories.skincare.description'),
       color: "from-pink-400 to-rose-500",
       path: "/skincare-wellness",
-      categoryKey: "Skincare & Wellness"
+      categoryKey: "skincare & wellness"
     }
   ];
 
@@ -52,7 +54,7 @@ const Categories = () => {
 
   const categories = categoryConfig.map(config => ({
     ...config,
-    articles: `${getArticleCount(config.categoryKey)} Articles`
+    articles: `${getArticleCount(config.categoryKey)} ${t('categories.articles')}`
   }));
 
   if (isLoading) {
@@ -62,16 +64,16 @@ const Categories = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                Explore by Category
+                {t('categories.title')}
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Dive deep into your favorite beauty topics with our curated collections
+              {t('categories.subtitle')}
             </p>
           </div>
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-500 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading categories...</p>
+            <p className="mt-4 text-gray-600">{t('categories.loading')}</p>
           </div>
         </div>
       </section>
@@ -84,11 +86,11 @@ const Categories = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-              Explore by Category
+              {t('categories.title')}
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Dive deep into your favorite beauty topics with our curated collections
+            {t('categories.subtitle')}
           </p>
         </div>
 
@@ -121,7 +123,7 @@ const Categories = () => {
                     {category.articles}
                   </span>
                   <button className="text-rose-600 font-semibold text-sm hover:text-rose-700 transition-colors">
-                    Explore →
+                    {t('categories.explore')} →
                   </button>
                 </div>
               </div>

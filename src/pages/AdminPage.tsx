@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Eye, Users, BookOpen, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/useToast';
+import { useTranslations } from '@/hooks/useTranslations';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,6 +12,7 @@ import type { Tables } from '@/integrations/supabase/types';
 type Article = Tables<'articles'>;
 
 const AdminPage = () => {
+  const { t } = useTranslations();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -41,8 +43,8 @@ const AdminPage = () => {
 
       if (!roles || roles.length === 0) {
         toast({
-          title: "Access Denied",
-          description: "You don't have admin privileges",
+          title: t('admin.accessDenied'),
+          description: t('admin.accessDeniedMessage'),
           variant: "destructive",
         });
         window.location.href = '/';
@@ -53,7 +55,7 @@ const AdminPage = () => {
       fetchArticles();
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -72,7 +74,7 @@ const AdminPage = () => {
       setArticles(data || []);
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -82,7 +84,7 @@ const AdminPage = () => {
   };
 
   const deleteArticle = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this article?')) return;
+    if (!confirm(t('admin.deleteConfirm'))) return;
 
     try {
       const { error } = await supabase
@@ -93,14 +95,14 @@ const AdminPage = () => {
       if (error) throw error;
 
       toast({
-        title: "Success",
-        description: "Article deleted successfully",
+        title: t('admin.success'),
+        description: t('admin.deleteSuccess'),
       });
 
       fetchArticles();
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -117,14 +119,14 @@ const AdminPage = () => {
       if (error) throw error;
 
       toast({
-        title: "Success",
-        description: `Article ${!currentStatus ? 'published' : 'unpublished'} successfully`,
+        title: t('admin.success'),
+        description: t(!currentStatus ? 'admin.publishSuccess' : 'admin.unpublishSuccess'),
       });
 
       fetchArticles();
     } catch (error: any) {
       toast({
-        title: "Error",
+        title: t('common.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -155,8 +157,8 @@ const AdminPage = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">Admin Dashboard</h1>
-            <p className="text-gray-600">Manage articles and content for Moment Art</p>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('admin.title')}</h1>
+            <p className="text-gray-600">{t('admin.subtitle')}</p>
           </div>
 
           {/* Stats */}
@@ -164,7 +166,7 @@ const AdminPage = () => {
             <div className="bg-white rounded-lg p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Total Articles</p>
+                  <p className="text-gray-500 text-sm">{t('admin.stats.totalArticles')}</p>
                   <p className="text-2xl font-bold text-gray-800">{articles.length}</p>
                 </div>
                 <BookOpen className="w-8 h-8 text-green-500" />
@@ -173,7 +175,7 @@ const AdminPage = () => {
             <div className="bg-white rounded-lg p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Published</p>
+                  <p className="text-gray-500 text-sm">{t('admin.stats.published')}</p>
                   <p className="text-2xl font-bold text-gray-800">
                     {articles.filter(a => a.published).length}
                   </p>
@@ -184,7 +186,7 @@ const AdminPage = () => {
             <div className="bg-white rounded-lg p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-500 text-sm">Draft</p>
+                  <p className="text-gray-500 text-sm">{t('admin.stats.draft')}</p>
                   <p className="text-2xl font-bold text-gray-800">
                     {articles.filter(a => !a.published).length}
                   </p>
@@ -201,33 +203,33 @@ const AdminPage = () => {
               className="bg-green-600 hover:bg-green-700"
             >
               <Plus className="w-4 h-4 mr-2" />
-              Create Article
+              {t('admin.createArticle')}
             </Button>
           </div>
 
           {/* Articles Table */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-800">Articles</h2>
+              <h2 className="text-xl font-semibold text-gray-800">{t('admin.articlesTable')}</h2>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Title
+                      {t('admin.table.title')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Category
+                      {t('admin.table.category')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      {t('admin.table.status')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Created
+                      {t('admin.table.created')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {t('admin.table.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -253,7 +255,7 @@ const AdminPage = () => {
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-yellow-100 text-yellow-800'
                         }`}>
-                          {article.published ? 'Published' : 'Draft'}
+                          {article.published ? t('admin.published') : t('admin.draft')}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -265,7 +267,7 @@ const AdminPage = () => {
                           variant="outline"
                           size="sm"
                         >
-                          {article.published ? 'Unpublish' : 'Publish'}
+                          {article.published ? t('admin.unpublish') : t('admin.publish')}
                         </Button>
                         <Button
                           onClick={() => deleteArticle(article.id)}

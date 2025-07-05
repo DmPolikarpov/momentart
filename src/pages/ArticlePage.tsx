@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useArticle, calculateReadingTime, useTrackView } from '@/hooks/useArticles';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/useToast';
+import { useTranslations } from '@/hooks/useTranslations';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ArticleNavigation from '../components/ArticleNavigation';
@@ -14,6 +15,7 @@ const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslations();
   const [isAdmin, setIsAdmin] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const viewTrackedRef = useRef<string | null>(null);
@@ -62,6 +64,7 @@ const ArticlePage = () => {
         <Header />
         <div className="pt-24 pb-16 flex justify-center items-center min-h-[60vh]">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
+          <p className="ml-4 text-gray-600">{t('article.loading')}</p>
         </div>
         <Footer />
       </div>
@@ -73,7 +76,7 @@ const ArticlePage = () => {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <Header />
         <div className="pt-24 pb-16 text-center">
-          <h1 className="text-2xl font-bold text-gray-800">Article not found</h1>
+          <h1 className="text-2xl font-bold text-gray-800">{t('article.notFound')}</h1>
         </div>
         <Footer />
       </div>

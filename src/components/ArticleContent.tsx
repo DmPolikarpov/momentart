@@ -1,8 +1,10 @@
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import { ArticleWithAuthor } from '@/hooks/useArticles';
 import ArticleImageCarousel from './ArticleImageCarousel';
 import ArticleInteractions from './ArticleInteractions';
 import SocialShare from './SocialShare';
+import { useTranslations } from '@/hooks/useTranslations';
 
 interface ArticleContentProps {
   article: ArticleWithAuthor;
@@ -11,6 +13,8 @@ interface ArticleContentProps {
 }
 
 const ArticleContent = ({ article, images, articleUrl }: ArticleContentProps) => {
+  const { t } = useTranslations();
+
   return (
     <>
       {/* Article images carousel */}
@@ -26,9 +30,30 @@ const ArticleContent = ({ article, images, articleUrl }: ArticleContentProps) =>
             />
           ) : (
             <p className="text-gray-700 leading-relaxed">
-              This is a sample article content. In a real implementation, you would have rich text content here 
-              with proper formatting, images, and other media elements that make up a complete beauty article.
+              {t('articleContent.sampleContent')}
             </p>
+          )}
+
+          {/* Article source */}
+          {article.source && (
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="flex items-center space-x-2 text-sm text-gray-600">
+                <ExternalLink className="w-4 h-4" />
+                <span className="font-medium">Source:</span>
+                {article.source.startsWith('http') ? (
+                  <a 
+                    href={article.source} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 underline"
+                  >
+                    {article.source}
+                  </a>
+                ) : (
+                  <span>{article.source}</span>
+                )}
+              </div>
+            </div>
           )}
         </div>
       </div>

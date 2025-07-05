@@ -1,0 +1,49 @@
+{
+  "featuredArticles": {
+    "badge": "Latest Updates",
+    "title": "Featured Stories",
+    "description": "Stay updated with the latest beauty trends, expert tips, and industry insights",
+    "categories": {
+      "all": "All Articles"
+    },
+    "error": "Error loading articles. Please try again later.",
+    "noArticles": "No articles found in this category.",
+    "noExcerpt": "No excerpt available",
+    "anonymous": "Anonymous",
+    "readMore": "Read More"
+  },
+  "gallery": {
+    "title": "Beauty Gallery",
+    "description": "Discover our complete collection of beauty articles, tutorials, and inspiration",
+    "filterBy": "Filter by category:",
+    "allArticles": "All Articles",
+    "showing": "Showing",
+    "readMore": "Read More",
+    "noArticles": "No articles found in the {{category}} category. Check back soon!",
+    "stats": {
+      "views": "views",
+      "likes": "likes"
+    }
+  },
+  "article": {
+    "back": "Back",
+    "edit": "Edit Article",
+    "share": "Share Article",
+    "readTime": "min read",
+    "author": "Author",
+    "publishedOn": "Published on",
+    "category": "Category",
+    "tags": "Tags",
+    "relatedArticles": "Related Articles",
+    "notFound": "Article not found",
+    "loading": "Loading article..."
+  },
+  "articleInteractions": {
+    "likeSuccess": "Thanks for liking this article!",
+    "likeError": "Failed to like article. Please try again.",
+    "likeTitle": "Like this article"
+  },
+  "articleContent": {
+    "sampleContent": "This is a sample article content. In a real implementation, you would have rich text content here with proper formatting, images, and other media elements that make up a complete beauty article."
+  }
+}

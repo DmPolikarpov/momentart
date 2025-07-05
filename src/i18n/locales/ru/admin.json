@@ -1,0 +1,64 @@
+{
+  "admin": {
+    "title": "Панель администратора",
+    "subtitle": "Управляйте статьями и контентом для Момент Арт",
+    "accessDenied": "Доступ запрещён",
+    "accessDeniedMessage": "У вас нет прав администратора",
+    "success": "Успешно",
+    "deleteSuccess": "Статья успешно удалена",
+    "publishSuccess": "Статья успешно опубликована",
+    "unpublishSuccess": "Публикация статьи отменена",
+    "deleteConfirm": "Вы уверены, что хотите удалить эту статью?",
+    "createArticle": "Создать статью",
+    "articlesTable": "Статьи",
+    "stats": {
+      "totalArticles": "Всего статей",
+      "published": "Опубликовано",
+      "draft": "Черновик"
+    },
+    "table": {
+      "title": "Заголовок",
+      "category": "Категория",
+      "status": "Статус",
+      "created": "Создано",
+      "actions": "Действия"
+    },
+    "published": "Опубликовано",
+    "draft": "Черновик",
+    "publish": "Опубликовать",
+    "unpublish": "Снять с публикации"
+  },
+  "editArticle": {
+    "title": "Редактировать статью",
+    "titleLabel": "Заголовок",
+    "titlePlaceholder": "Введите заголовок статьи",
+    "categoryLabel": "Категория",
+    "categoryPlaceholder": "Выберите категорию",
+    "excerptLabel": "Выдержка",
+    "excerptPlaceholder": "Краткое описание статьи",
+    "imagesLabel": "Изображения",
+    "contentLabel": "Содержание",
+    "contentPlaceholder": "Напишите содержание вашей статьи здесь...",
+    "updating": "Обновление...",
+    "updateButton": "Обновить статью",
+    "cancel": "Отмена",
+    "requiredFields": "Пожалуйста, заполните все обязательные поля",
+    "updateSuccess": "Статья успешно обновлена"
+  },
+  "createArticle": {
+    "titleLabel": "Заголовок",
+    "titlePlaceholder": "Введите заголовок статьи",
+    "categoryLabel": "Категория",
+    "categoryPlaceholder": "Выберите категорию",
+    "excerptLabel": "Выдержка",
+    "excerptPlaceholder": "Краткое описание статьи",
+    "imagesLabel": "Изображения",
+    "contentLabel": "Содержание",
+    "contentPlaceholder": "Напишите содержание вашей статьи здесь...",
+    "publishImmediately": "Опубликовать немедленно",
+    "creating": "Создание...",
+    "cancel": "Отмена",
+    "requiredFields": "Пожалуйста, заполните все обязательные поля",
+    "createSuccess": "Статья успешно создана"
+  }
+}

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mail, ArrowRight, Sparkles } from 'lucide-react';
 
 const Newsletter = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -29,16 +31,15 @@ const Newsletter = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
             <Sparkles className="w-5 h-5 text-white" />
-            <span className="text-white font-medium">Join Our Beauty Community</span>
+            <span className="text-white font-medium">{t('newsletter.badge')}</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Never Miss a Beauty Moment
+            {t('newsletter.title')}
           </h2>
 
           <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Get exclusive beauty tips, trending tutorials, and early access to the latest 
-            nail art designs delivered straight to your inbox.
+            {t('newsletter.description')}
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
@@ -49,7 +50,7 @@ const Newsletter = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
+                  placeholder={t('newsletter.placeholder')}
                   className="w-full pl-12 pr-4 py-4 rounded-full bg-white/95 backdrop-blur-sm border-0 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/30 transition-all"
                   required
                 />
@@ -61,12 +62,12 @@ const Newsletter = () => {
               >
                 {isSubscribed ? (
                   <span className="flex items-center space-x-2">
-                    <span>Subscribed!</span>
+                    <span>{t('newsletter.subscribed')}</span>
                     <Sparkles className="w-5 h-5" />
                   </span>
                 ) : (
                   <span className="flex items-center space-x-2">
-                    <span>Subscribe</span>
+                    <span>{t('newsletter.subscribe')}</span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 )}
@@ -75,11 +76,11 @@ const Newsletter = () => {
           </form>
 
           <p className="text-white/70 text-sm mt-6">
-            Join 50,000+ beauty enthusiasts. Unsubscribe anytime.
+            {t('newsletter.disclaimer')}
           </p>
 
           <div className="flex justify-center space-x-8 mt-12">
-            {['Weekly Tips', 'Exclusive Content', 'Trend Alerts'].map((feature, index) => (
+            {[t('newsletter.features.tips'), t('newsletter.features.content'), t('newsletter.features.alerts')].map((feature, index) => (
               <div key={feature} className={`text-center animate-fade-in`} style={{ animationDelay: `${index * 200}ms` }}>
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
                   <Sparkles className="w-6 h-6 text-white" />

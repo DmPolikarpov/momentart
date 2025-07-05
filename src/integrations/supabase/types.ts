@@ -16,6 +16,7 @@ export type Database = {
           id: string
           image_order: number
           image_url: string
+          source: string | null
         }
         Insert: {
           article_id: string
@@ -23,6 +24,7 @@ export type Database = {
           id?: string
           image_order?: number
           image_url: string
+          source?: string | null
         }
         Update: {
           article_id?: string
@@ -30,6 +32,7 @@ export type Database = {
           id?: string
           image_order?: number
           image_url?: string
+          source?: string | null
         }
         Relationships: [
           {
@@ -104,6 +107,7 @@ export type Database = {
           image_url: string | null
           published: boolean | null
           slug: string | null
+          source: string | null
           title: string
           updated_at: string
         }
@@ -117,6 +121,7 @@ export type Database = {
           image_url?: string | null
           published?: boolean | null
           slug?: string | null
+          source?: string | null
           title: string
           updated_at?: string
         }
@@ -130,6 +135,7 @@ export type Database = {
           image_url?: string | null
           published?: boolean | null
           slug?: string | null
+          source?: string | null
           title?: string
           updated_at?: string
         }

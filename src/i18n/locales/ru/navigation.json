@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Главная",
+    "categories": "Категории",
+    "about": "О нас",
+    "contact": "Контакты",
+    "tutorials": "Уроки",
+    "artists": "Художники",
+    "collections": "Коллекции",
+    "signIn": "Войти",
+    "signOut": "Выйти",
+    "profile": "Профиль",
+    "admin": "Админ"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "admin": {
+    "title": "Admin Dashboard",
+    "subtitle": "Manage articles and content for Moment Art",
+    "accessDenied": "Access Denied",
+    "accessDeniedMessage": "You don't have admin privileges",
+    "success": "Success",
+    "deleteSuccess": "Article deleted successfully",
+    "publishSuccess": "Article published successfully",
+    "unpublishSuccess": "Article unpublished successfully",
+    "deleteConfirm": "Are you sure you want to delete this article?",
+    "createArticle": "Create Article",
+    "articlesTable": "Articles",
+    "stats": {
+      "totalArticles": "Total Articles",
+      "published": "Published",
+      "draft": "Draft"
+    },
+    "table": {
+      "title": "Title",
+      "category": "Category",
+      "status": "Status",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "published": "Published",
+    "draft": "Draft",
+    "publish": "Publish",
+    "unpublish": "Unpublish"
+  },
+  "editArticle": {
+    "title": "Edit Article",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter article title",
+    "categoryLabel": "Category",
+    "categoryPlaceholder": "Select a category",
+    "excerptLabel": "Excerpt",
+    "excerptPlaceholder": "Brief description of the article",
+    "imagesLabel": "Images",
+    "contentLabel": "Content",
+    "contentPlaceholder": "Write your article content here...",
+    "updating": "Updating...",
+    "updateButton": "Update Article",
+    "cancel": "Cancel",
+    "requiredFields": "Please fill in all required fields",
+    "updateSuccess": "Article updated successfully"
+  },
+  "createArticle": {
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter article title",
+    "categoryLabel": "Category",
+    "categoryPlaceholder": "Select a category",
+    "excerptLabel": "Excerpt",
+    "excerptPlaceholder": "Brief description of the article",
+    "imagesLabel": "Images",
+    "contentLabel": "Content",
+    "contentPlaceholder": "Write your article content here...",
+    "publishImmediately": "Publish immediately",
+    "creating": "Creating...",
+    "cancel": "Cancel",
+    "requiredFields": "Please fill in all required fields",
+    "createSuccess": "Article created successfully"
+  }
+}
