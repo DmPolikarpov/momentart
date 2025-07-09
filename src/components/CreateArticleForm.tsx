@@ -35,10 +35,10 @@ const CreateArticleForm = ({ onClose, onSuccess }: CreateArticleFormProps) => {
   const { t } = useTranslations();
 
   const categories = [
-    t('categories.manicure.title'),
-    t('categories.eyelashes.title'), 
-    t('categories.cosmetology.title'),
-    t('categories.skincare.title')
+    {name: t('categories.manicure.title'), id: "manicure"},
+    {name: t('categories.eyelashes.title'), id: "eyelashes"}, 
+    {name: t('categories.cosmetology.title'), id: "cosmetology"},
+    {name: t('categories.skincare.title'), id: "skincare"}
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -132,8 +132,8 @@ const CreateArticleForm = ({ onClose, onSuccess }: CreateArticleFormProps) => {
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -78,16 +78,16 @@ const Hero = () => {
           </div>
 
           {/* Main Heading with Advanced Animation */}
-          <h1 className={`text-5xl md:text-7xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
-            <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent animate-gradient-text">
+          <h1 className={`text-8xl md:text-7xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
+            <span className="bg-gradient-to-r font-dancing from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent animate-gradient-text">
               Moment Art
             </span>
             <br />
-            <span className="text-gray-800 animate-slide-up">{t('hero.subtitle')}</span>
+            <span className="text-6xl font-medium text-gray-800 animate-slide-up italic">{t('hero.subtitle')}</span>
           </h1>
 
           {/* Subtitle with Fade-in from Bottom */}
-          <p className={`text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
+          <p className={`text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
             {t('hero.description')}
           </p>
 
@@ -102,9 +102,9 @@ const Hero = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
               </span>
             </button>
-            <button className="bg-white/80 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-green-200">
+            {/* <button className="bg-white/80 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-transparent hover:border-green-200">
               {t('hero.joinCommunity')}
-            </button>
+            </button> */}
           </div>
         </div>
 

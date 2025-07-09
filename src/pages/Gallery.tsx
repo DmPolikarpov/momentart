@@ -13,11 +13,11 @@ const Gallery = () => {
   const { data: articlesWithStats = [], isLoading } = useArticlesWithStats();
 
   const categories = [
-    { id: 'all', name: t('All Articles'), color: 'from-purple-500 to-rose-500' },
-    { id: 'Manicure & Nail Art', name: t('Manicure'), color: 'from-rose-500 to-pink-600' },
-    { id: 'Eyelash Extensions', name: t('Eyelashes'), color: 'from-purple-500 to-violet-600' },
-    { id: 'Cosmetology Trends', name: t('Cosmetology'), color: 'from-amber-500 to-orange-600' },
-    { id: 'Skincare & Wellness', name: t('Skincare & Wellness'), color: 'from-emerald-500 to-green-600' }
+    { id: 'all', name: t('gallery.allArticles'), color: 'from-purple-500 to-rose-500' },
+    { id: 'manicure', name: t('categories.manicure.title'), color: 'from-rose-500 to-pink-600' },
+    { id: 'eyelashes', name: t('categories.eyelashes.title'), color: 'from-purple-500 to-violet-600' },
+    { id: 'cosmetology', name: t('categories.cosmetology.title'), color: 'from-amber-500 to-orange-600' },
+    { id: 'skincare & wellness', name: t('categories.skincare.title'), color: 'from-emerald-500 to-green-600' }
   ];
 
   const filteredArticles = selectedCategory === 'all' 
@@ -85,7 +85,7 @@ const Gallery = () => {
           <div className="flex items-center justify-center mb-8">
             <div className="flex items-center space-x-2 mr-4">
               <Filter className="w-5 h-5 text-gray-600" />
-              <span className="text-gray-600 font-medium">Filter by category:</span>
+              <span className="text-gray-600 font-medium">{t('gallery.filterBy')}</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (

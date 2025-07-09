@@ -10,14 +10,14 @@ interface ArticleMetadataProps {
 const ArticleMetadata = ({ article, readingTime }: ArticleMetadataProps) => {
   return (
     <div className="flex items-center space-x-6 text-gray-500">
-      {article.profiles && (
+      {/* {article.profiles && (
         <div className="flex items-center space-x-2">
           <User className="w-4 h-4" />
           <span className="text-sm">
             By {article.profiles.full_name || 'Anonymous'}
           </span>
         </div>
-      )}
+      )} */}
       <div className="flex items-center space-x-2">
         <Calendar className="w-4 h-4" />
         <span className="text-sm">

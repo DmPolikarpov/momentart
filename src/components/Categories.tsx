@@ -24,7 +24,7 @@ const Categories = () => {
       description: t('categories.eyelashes.description'),
       color: "from-purple-400 to-pink-500",
       path: "/eyelashes",
-      categoryKey: "eyelashes"
+      categoryKey: "eyelash"
     },
     {
       icon: Sparkles,
@@ -40,7 +40,7 @@ const Categories = () => {
       description: t('categories.skincare.description'),
       color: "from-pink-400 to-rose-500",
       path: "/skincare-wellness",
-      categoryKey: "skincare & wellness"
+      categoryKey: "skincare"
     }
   ];
 

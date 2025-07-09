@@ -17,7 +17,8 @@
     "email": "Email",
     "phone": "Phone",
     "location": "Location",
-    "copyright": "© 2024 Moment Art. All rights reserved."
+    "Russia": "Russia",
+    "copyright": "© 2025 Moment Art. All rights reserved."
   },
   "notFound": {
     "message": "Oops! Page not found",

@@ -21,9 +21,9 @@ export default {
 			backgroundImage: {
 				'hero': "url('/src/assets/hero-bg.jpg')",
 			},
-
-
-
+			fontFamily: {
+                "dancing": ['Dancing Script', 'cursive']
+            },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -10,14 +10,19 @@ const FeaturedArticles = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const { t } = useTranslations();
 
-  const { data: articles = [], isLoading, error } = useArticles(activeCategory === 'all' ? undefined : activeCategory);
+  const { data: articles = [], isLoading, error } = useArticles();
 
   const categories = [
     { id: 'all', label: t('featuredArticles.categories.all'), count: articles.length },
     { id: 'manicure', label: t('categories.manicure.title'), count: articles.filter(a => a.category === 'manicure').length },
-    { id: 'eyelashes', label: t('categories.eyelashes.title'), count: articles.filter(a => a.category === 'eyelashes').length },
-    { id: 'cosmetology', label: t('categories.cosmetology.title'), count: articles.filter(a => a.category === 'cosmetology').length }
+    { id: 'eyelash', label: t('categories.eyelashes.title'), count: articles.filter(a => a.category === 'eyelash').length },
+    { id: 'cosmetology', label: t('categories.cosmetology.title'), count: articles.filter(a => a.category === 'cosmetology').length },
+    { id: 'skincare', label: t('categories.skincare.title'), count: articles.filter(a => a.category === 'skincare').length }
   ];
+
+  const getActiveArticles = () => {
+    return activeCategory === "all" ? articles : articles.filter(e => e.category === activeCategory);
+  }
 
   if (error) {
     return (
@@ -55,7 +60,7 @@ const FeaturedArticles = () => {
 
         {/* Enhanced Category Tabs */}
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-4 bg-white/80 backdrop-blur-sm shadow-lg rounded-full p-2">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-5 bg-white/80 backdrop-blur-sm shadow-lg rounded-full">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
@@ -88,13 +93,13 @@ const FeaturedArticles = () => {
                   </div>
                 ))}
               </div>
-            ) : articles.length === 0 ? (
+            ) : getActiveArticles().length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">{t('featuredArticles.noArticles')}</p>
               </div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {articles.slice(0, 6).map((article, index) => {
+                {getActiveArticles().slice(0, 6).map((article, index) => {
                   const readingTime = calculateReadingTime(article.content || '');
                   const mainImage = article.article_images?.[0]?.image_url || article.image_url;
                   
@@ -125,7 +130,7 @@ const FeaturedArticles = () => {
                         {article.category && (
                           <div className="absolute top-4 left-4">
                             <span className="bg-gradient-to-r from-rose-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                              {article.category.charAt(0).toUpperCase() + article.category.slice(1)}
+                              {categories.find(e => e.id === article.category).label}
                             </span>
                           </div>
                         )}
@@ -148,10 +153,10 @@ const FeaturedArticles = () => {
 
                         <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                           <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-1">
+                            {/* <div className="flex items-center space-x-1">
                               <User className="w-4 h-4" />
                               <span>{article.profiles?.full_name || t('featuredArticles.anonymous')}</span>
-                            </div>
+                            </div> */}
                             <div className="flex items-center space-x-1">
                               <Clock className="w-4 h-4" />
                               <span>{readingTime} {t('common.minRead')}</span>

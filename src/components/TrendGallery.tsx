@@ -10,10 +10,10 @@ const TrendGallery = () => {
   const { data: articles, isLoading } = useArticlesWithStats();
 
   const trendingTopics = [
-    { id: 'nailArt', name: t('trendGallery.topics.nailArt'), color: 'from-rose-500 to-pink-600', category: t('categories.manicure.title') },
-    { id: 'lashTech', name: t('trendGallery.topics.lashTech'), color: 'from-purple-500 to-violet-600', category: t('categories.eyelashes.title') },
+    { id: 'manicure', name: t('trendGallery.topics.nailArt'), color: 'from-rose-500 to-pink-600', category: t('categories.manicure.title') },
+    { id: 'eyelash', name: t('trendGallery.topics.lashTech'), color: 'from-purple-500 to-violet-600', category: t('categories.eyelashes.title') },
     { id: 'skincare', name: t('trendGallery.topics.skincare'), color: 'from-emerald-500 to-green-600', category: t('categories.skincare.title') },
-    { id: 'makeup', name: t('trendGallery.topics.makeup'), color: 'from-amber-500 to-orange-600', category: t('categories.cosmetology.title') }
+    { id: 'cosmetology', name: t('trendGallery.topics.makeup'), color: 'from-amber-500 to-orange-600', category: t('categories.cosmetology.title') }
   ];
 
   const filteredArticles = React.useMemo(() => {
@@ -23,7 +23,7 @@ const TrendGallery = () => {
     if (activeTab !== 'all') {
       const selectedTopic = trendingTopics.find(topic => topic.id === activeTab);
       if (selectedTopic) {
-        filtered = articles.filter(article => article.category === selectedTopic.category);
+        filtered = articles.filter(article => article.category === selectedTopic.id);
       }
     }
     
@@ -142,7 +142,7 @@ const TrendGallery = () => {
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={article.image_url || article.article_images?.[0]?.image_url || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop'}
+                    src={article.image_url || article.article_images?.[0]?.image_url}
                     alt={article.title}
                     className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -184,7 +184,7 @@ const TrendGallery = () => {
                     <div className="flex items-center space-x-2">
                       <Sparkles className="w-4 h-4 text-indigo-500" />
                       <span className="text-sm text-gray-500 capitalize">
-                        {article.category}
+                        {trendingTopics.find(e => e.id === article.category).category}
                       </span>
                     </div>
                     <button className="text-indigo-600 font-semibold text-sm hover:text-indigo-700 transition-colors flex items-center space-x-1 group-hover:space-x-2">

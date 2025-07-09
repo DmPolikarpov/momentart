@@ -77,7 +77,7 @@ const SocialShare = ({ title, excerpt, url }: SocialShareProps) => {
         <span className="text-sm">Share</span>
       </button>
       
-      <div className="flex space-x-2">
+      {/* <div className="flex space-x-2">
         <button
           onClick={() => shareToSocial('twitter')}
           className="w-8 h-8 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors"
@@ -106,7 +106,7 @@ const SocialShare = ({ title, excerpt, url }: SocialShareProps) => {
         >
           P
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

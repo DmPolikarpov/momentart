@@ -93,7 +93,7 @@ const Header = () => {
   };
 
   const setTextColor = () => {
-    return isScrolled ? 'text-gray-700' : 'text-gray-300'
+    return isScrolled ? 'text-gray-700' : 'text-gray-400'
   }
 
   const categories = [
@@ -111,11 +111,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center space-x-3 group cursor-pointer" onClick={() => navigate('/')}>
             <img 
-              src="src/assets/logo.png" 
+              src="./../../src/assets/logo.png" 
               alt="Moment Art Logo" 
               className="w-10 h-10 transition-transform group-hover:scale-110" 
             />
-            <span className="text-2xl font-bold bg-gradient-to-r from-green-500 via-emerald-500 to-teal-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-dancing font-bold bg-gradient-to-r from-green-500 via-emerald-500 to-teal-600 bg-clip-text text-transparent">
               Moment Art
             </span>
           </div>
@@ -154,7 +154,7 @@ const Header = () => {
                         navigate(category.path);
                         setIsCategoriesOpen(false);
                       }}
-                      className={`block w-full text-left px-4 py-3 ${setTextColor()} hover:text-green-500 hover:bg-green-50 transition-all duration-200`}
+                      className={`block w-full text-left px-4 py-3 text-gray-700 hover:text-green-500 hover:bg-green-50 transition-all duration-200`}
                     >
                       {category.name}
                     </button>
