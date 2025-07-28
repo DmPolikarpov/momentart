@@ -17,7 +17,7 @@ const EyelashesPage = () => {
     isFetchingNextPage,
     isLoading,
     error
-  } = useInfiniteArticles('eyelashes');
+  } = useInfiniteArticles('eyelash');
 
   useEffect(() => {
     setIsLoaded(true);

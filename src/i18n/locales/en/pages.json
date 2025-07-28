@@ -9,6 +9,7 @@
       "content": "Founded in 2020, Moment Art began as a small blog sharing beauty tips and creative inspiration. What started as a passion project has grown into a comprehensive platform serving thousands of beauty enthusiasts worldwide."
     },
     "mission": {
+      "title": "About us",
       "content": "We believe that beauty is an art form, and everyone deserves access to quality information, tutorials, and inspiration to express their creativity. From nail art to skincare routines, we cover it all with authenticity and expertise."
     },
     "values": {
@@ -24,21 +25,23 @@
       "quality": {
         "title": "Authenticity",
         "description": "We believe in honest reviews and genuine recommendations from real beauty experts."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We strive for excellence in everything we do, from content quality to user experience."
       }
     },
     "team": {
       "title": "Meet Our Team",
-      "founder": {
-        "role": "Founder & Creative Director",
-        "bio": "Passionate about beauty innovation with 15+ years in the industry."
-      },
       "artist": {
-        "role": "Beauty Expert",
-        "bio": "Licensed cosmetologist specializing in nail art and skincare."
+        "name": "Natalia",
+        "role": "Founder & Beauty Expert",
+        "bio": "Passionate about beauty innovation and licensed cosmetologist-aesthetician specializing in nail art and skincare."
       },
       "developer": {
-        "role": "Content Creator",
-        "bio": "Creating inspiring content that empowers beauty enthusiasts worldwide."
+        "name": "Dmitrii",
+        "role": "Founder & Application Creator",
+        "bio": "Creating inspiring application that empowers beauty enthusiasts worldwide."
       }
     },
     "cta": {

@@ -8,20 +8,20 @@ const About = () => {
   const { t } = useTranslations();
 
   const teamMembers = [
+    // {
+    //   name: "Sarah Johnson",
+    //   role: t('about.team.founder.role'),
+    //   image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
+    //   bio: t('about.team.founder.bio')
+    // },
     {
-      name: "Sarah Johnson",
-      role: t('about.team.founder.role'),
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
-      bio: t('about.team.founder.bio')
-    },
-    {
-      name: "Emma Chen",
+      name: t('about.team.artist.name'),
       role: t('about.team.artist.role'),
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
       bio: t('about.team.artist.bio')
     },
     {
-      name: "Maria Rodriguez",
+      name: t('about.team.developer.name'),
       role: t('about.team.developer.role'),
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=400&h=400&fit=crop",
       bio: t('about.team.developer.bio')
@@ -46,8 +46,8 @@ const About = () => {
     },
     {
       icon: Award,
-      title: "Excellence",
-      description: "We strive for excellence in everything we do, from content quality to user experience."
+      title: t('about.values.excellence.title'),
+      description: t('about.values.excellence.description')
     }
   ];
 
@@ -72,19 +72,19 @@ const About = () => {
           {/* Story Section */}
           <div className="grid lg:grid-cols-2 gap-12 mb-20 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('about.story.title')}</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('about.mission.title')}</h2>
+              {/* <p className="text-gray-600 mb-4 leading-relaxed">
                 {t('about.story.content')}
-              </p>
+              </p> */}
               <p className="text-gray-600 leading-relaxed">
                 {t('about.mission.content')}
               </p>
             </div>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=600&h=400&fit=crop" 
+                src="./../../src/assets/logo.png" 
                 alt="About us" 
-                className="rounded-2xl shadow-2xl"
+                className="rounded-2xl"
               />
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-20"></div>
             </div>
@@ -112,7 +112,7 @@ const About = () => {
           {/* Team Section */}
           <div className="mb-20">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">{t('about.team.title')}</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-20">
               {teamMembers.map((member, index) => (
                 <div 
                   key={member.name}
@@ -132,7 +132,7 @@ const About = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center bg-white rounded-2xl p-12 shadow-xl">
+          {/* <div className="text-center bg-white rounded-2xl p-12 shadow-xl">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">{t('about.cta.title')}</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               {t('about.cta.description')}
@@ -140,7 +140,7 @@ const About = () => {
             <button className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 hover:shadow-lg">
               {t('about.cta.button')}
             </button>
-          </div>
+          </div> */}
         </div>
       </main>
 

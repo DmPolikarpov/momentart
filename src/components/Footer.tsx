@@ -34,10 +34,10 @@ const Footer = () => {
         name: t('footer.aboutUs'),
         link: '/about'
       }, 
-      {
-        name: t('footer.contact'),
-        link: '/contact'
-      }
+      // {
+      //   name: t('footer.contact'),
+      //   link: '/contact'
+      // }
     ]
   };
 

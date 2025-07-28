@@ -9,7 +9,7 @@ import { useTranslations } from '../hooks/useTranslations';
 const SkincareWellnessPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
-  const { data: articles = [], isLoading } = useArticles('Skincare & Wellness');
+  const { data: articles = [], isLoading } = useArticles('skincare');
   const { t } = useTranslations();
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import DOMPurify from 'dompurify';
 import { ArticleWithAuthor } from '@/hooks/useArticles';
 import ArticleImageCarousel from './ArticleImageCarousel';
 import ArticleInteractions from './ArticleInteractions';
@@ -26,7 +27,7 @@ const ArticleContent = ({ article, images, articleUrl }: ArticleContentProps) =>
           {article.content ? (
             <div 
               className="text-gray-700 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
             />
           ) : (
             <p className="text-gray-700 leading-relaxed">

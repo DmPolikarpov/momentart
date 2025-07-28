@@ -78,7 +78,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid lg:grid-cols-1 gap-12 mb-16">
             {/* Contact Form */}
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.form.title')}</h2>
@@ -159,8 +159,8 @@ const Contact = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <div className="space-y-8 none">
+              {/* <div className="bg-white rounded-2xl p-8 shadow-xl">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('contact.info.title')}</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
@@ -176,10 +176,10 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Map Placeholder */}
-              <div className="bg-white rounded-2xl p-8 shadow-xl">
+              {/* <div className="bg-white rounded-2xl p-8 shadow-xl">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">{t('contact.map.title')}</h3>
                 <div className="w-full h-64 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
                   <div className="text-center">
@@ -188,12 +188,12 @@ const Contact = () => {
                     <p className="text-sm text-gray-500">{t('contact.info.addressDetails')}</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl">
+          {/* <div className="bg-white rounded-2xl p-8 shadow-xl">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">{t('contact.faq.title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
@@ -221,7 +221,7 @@ const Contact = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </main>
 
