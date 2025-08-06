@@ -111,11 +111,11 @@ const Gallery = () => {
         <div className="container mx-auto px-4">
           {filteredArticles.length > 0 ? (
             <>
-              <div className="text-center mb-8">
+              {/* <div className="text-center mb-8">
                 <p className="text-gray-600">
                   {t('gallery.showing')} {filteredArticles.length} {selectedCategory === 'all' ? t('categories.articles') : `${selectedCategory} ${t('categories.articles')}`}
                 </p>
-              </div>
+              </div> */}
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredArticles.map((article, index) => (

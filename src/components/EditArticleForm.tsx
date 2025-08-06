@@ -37,10 +37,10 @@ const EditArticleForm = ({ article, onClose, onSuccess }: EditArticleFormProps) 
   const { t } = useTranslations();
 
   const categories = [
-    t('categories.manicure.title'),
-    t('categories.eyelashes.title'), 
-    t('categories.cosmetology.title'),
-    t('categories.skincare.title')
+    {label: t('categories.manicure.title'), id: "manicure"},
+    {label: t('categories.eyelashes.title'), id: "eyelash"},
+    {label: t('categories.cosmetology.title'), id: "cosmetology"},
+    {label: t('categories.skincare.title'), id: "skincare"},
   ];
 
   useEffect(() => {
@@ -140,8 +140,8 @@ const EditArticleForm = ({ article, onClose, onSuccess }: EditArticleFormProps) 
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.label}
                   </SelectItem>
                 ))}
               </SelectContent>
