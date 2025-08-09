@@ -10,7 +10,7 @@
     },
     "mission": {
       "title": "About us",
-      "content": "We believe that beauty is an art form, and everyone deserves access to quality information, tutorials, and inspiration to express their creativity. From nail art to skincare routines, we cover it all with authenticity and expertise."
+      "content": "We believe that beauty is an art form, and everyone deserves access to quality information, tutorials, and inspiration to express their creativity. From nail art to wellness routines, we cover it all with authenticity and expertise."
     },
     "values": {
       "title": "Our Values",
@@ -36,7 +36,7 @@
       "artist": {
         "name": "Natalia",
         "role": "Founder & Beauty Expert",
-        "bio": "Passionate about beauty innovation and licensed cosmetologist-aesthetician specializing in nail art and skincare."
+        "bio": "Passionate about beauty innovation and licensed cosmetologist-aesthetician specializing in nail art and wellness."
       },
       "developer": {
         "name": "Dmitrii",
@@ -128,12 +128,12 @@
       "readResearch": "Read Research",
       "defaultDescription": "Discover the latest innovations and scientific research in cosmetology."
     },
-    "skincare": {
+    "wellness": {
       "latestArticles": "Wellness & Natural Beauty",
       "holisticApproach": "Holistic Approach",
-      "defaultExcerpt": "Discover holistic approaches to skincare and wellness for naturally radiant skin.",
+      "defaultExcerpt": "Discover holistic approaches to  wellness for naturally radiant skin.",
       "wellnessExpert": "Wellness Expert",
-      "defaultDescription": "Learn about natural skincare approaches and wellness practices for healthy, glowing skin."
+      "defaultDescription": "Learn about natural wellness approaches and practices for healthy, glowing skin."
     },
     "common": {
       "endOfArticles": "You've reached the end of all articles",

@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ManicurePage from "./pages/ManicurePage";
-import EyelashesPage from "./pages/EyelashesPage";
 import CosmetologyPage from "./pages/CosmetologyPage";
 import SkincareWellnessPage from "./pages/SkincareWellnessPage";
 import ArticlePage from "./pages/ArticlePage";
@@ -30,9 +29,8 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/manicure" element={<ManicurePage />} />
-          <Route path="/eyelashes" element={<EyelashesPage />} />
           <Route path="/cosmetology" element={<CosmetologyPage />} />
-          <Route path="/skincare-wellness" element={<SkincareWellnessPage />} />
+          <Route path="/wellness" element={<SkincareWellnessPage />} />
           <Route path="/article/:id" element={<ArticlePage />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/admin" element={<AdminPage />} />

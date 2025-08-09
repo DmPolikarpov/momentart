@@ -15,9 +15,8 @@ const FeaturedArticles = () => {
   const categories = [
     { id: 'all', label: t('featuredArticles.categories.all'), count: articles.length },
     { id: 'manicure', label: t('categories.manicure.title'), count: articles.filter(a => a.category === 'manicure').length },
-    { id: 'eyelash', label: t('categories.eyelashes.title'), count: articles.filter(a => a.category === 'eyelash').length },
     { id: 'cosmetology', label: t('categories.cosmetology.title'), count: articles.filter(a => a.category === 'cosmetology').length },
-    { id: 'skincare', label: t('categories.skincare.title'), count: articles.filter(a => a.category === 'skincare').length }
+    { id: 'wellness', label: t('categories.wellness.title'), count: articles.filter(a => a.category === 'wellness').length }
   ];
 
   const getActiveArticles = () => {
@@ -60,7 +59,7 @@ const FeaturedArticles = () => {
 
         {/* Enhanced Category Tabs */}
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-5 bg-white/80 backdrop-blur-sm shadow-lg rounded-full">
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-4 bg-white/80 backdrop-blur-sm shadow-lg rounded-full">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 

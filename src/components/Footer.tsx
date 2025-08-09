@@ -59,7 +59,7 @@ const Footer = () => {
                 alt="Moment Art Logo" 
                 className="w-8 h-8" 
               />
-              <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+              <span className="text-2xl font-dancing font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
                 Moment Art
               </span>
             </div>
@@ -115,7 +115,7 @@ const Footer = () => {
               </div>
               <div>
                 <p className="text-sm text-gray-400">Email</p>
-                <p className="text-white">momentart.help@yandex.ru</p>
+                <p className="text-white">help@momentart.ru</p>
               </div>
             </div>
             {/* <div className="flex items-center space-x-3">

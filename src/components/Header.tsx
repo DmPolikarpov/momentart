@@ -98,9 +98,8 @@ const Header = () => {
 
   const categories = [
     { name: t('categories.manicure.title'), path: '/manicure' },
-    { name: t('categories.eyelashes.title'), path: '/eyelashes' },
     { name: t('categories.cosmetology.title'), path: '/cosmetology' },
-    { name: t('categories.skincare.title'), path: '/skincare-wellness' },
+    { name: t('categories.wellness.title'), path: '/wellness' },
   ];
 
   return (

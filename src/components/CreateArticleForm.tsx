@@ -36,9 +36,8 @@ const CreateArticleForm = ({ onClose, onSuccess }: CreateArticleFormProps) => {
 
   const categories = [
     {name: t('categories.manicure.title'), id: "manicure"},
-    {name: t('categories.eyelashes.title'), id: "eyelashes"}, 
     {name: t('categories.cosmetology.title'), id: "cosmetology"},
-    {name: t('categories.skincare.title'), id: "skincare"}
+    {name: t('categories.wellness.title'), id: "wellness"}
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -22,8 +22,8 @@
       "title": "Cosmetology Trends",
       "description": "Beauty innovations and industry breakthroughs"
     },
-    "skincare": {
-      "title": "Skincare & Wellness",
+    "wellness": {
+      "title": "Wellness",
       "description": "Holistic approaches to beauty and self-care"
     },
     "articles": "Articles",
@@ -40,7 +40,7 @@
     "topics": {
       "nailArt": "Nail Art",
       "lashTech": "Lash Tech",
-      "skincare": "Skincare",
+      "wellness": "Wellness",
       "makeup": "Makeup"
     }
   },

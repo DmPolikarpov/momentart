@@ -38,9 +38,8 @@ const EditArticleForm = ({ article, onClose, onSuccess }: EditArticleFormProps) 
 
   const categories = [
     {label: t('categories.manicure.title'), id: "manicure"},
-    {label: t('categories.eyelashes.title'), id: "eyelash"},
     {label: t('categories.cosmetology.title'), id: "cosmetology"},
-    {label: t('categories.skincare.title'), id: "skincare"},
+    {label: t('categories.wellness.title'), id: "wellness"},
   ];
 
   useEffect(() => {

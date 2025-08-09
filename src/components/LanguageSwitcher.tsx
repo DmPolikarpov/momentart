@@ -33,7 +33,7 @@ const LanguageSwitcher = () => {
   };
 
   const setTextColor = () => {
-    return isScrolled ? 'text-gray-700' : 'text-gray-300'
+    return isScrolled ? 'text-gray-700' : 'text-gray-400'
   }
 
   return (

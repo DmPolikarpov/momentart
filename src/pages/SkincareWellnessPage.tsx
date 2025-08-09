@@ -9,7 +9,7 @@ import { useTranslations } from '../hooks/useTranslations';
 const SkincareWellnessPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
-  const { data: articles = [], isLoading } = useArticles('skincare');
+  const { data: articles = [], isLoading } = useArticles('wellness');
   const { t } = useTranslations();
 
   useEffect(() => {
@@ -62,17 +62,17 @@ const SkincareWellnessPage = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className={`inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg transition-all duration-1000 ${isLoaded ? 'animate-slide-down opacity-100' : 'opacity-0 -translate-y-10'}`}>
             <Heart className="w-5 h-5 text-emerald-500 animate-pulse" />
-            <span className="text-sm font-medium text-gray-700">{t('categories.skincare.title')}</span>
+            <span className="text-sm font-medium text-gray-700">{t('categories.wellness.title')}</span>
           </div>
           
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-all duration-1200 ${isLoaded ? 'animate-text-reveal opacity-100' : 'opacity-0'}`}>
             <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-              {t('categories.skincare.title')}
+              {t('categories.wellness.title')}
             </span>
           </h1>
           
           <p className={`text-xl text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-1500 delay-300 ${isLoaded ? 'animate-slide-up-fade opacity-100' : 'opacity-0 translate-y-8'}`}>
-            {t('categories.skincare.description')}
+            {t('categories.wellness.description')}
           </p>
         </div>
       </section>
@@ -86,18 +86,18 @@ const SkincareWellnessPage = () => {
                 <div className="animate-fade-in">
                   <div className="flex items-center space-x-2 mb-4">
                     <Leaf className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm font-medium text-emerald-600">{t('pages.skincare.holisticApproach')}</span>
+                    <span className="text-sm font-medium text-emerald-600">{t('pages.wellness.holisticApproach')}</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                     {featuredArticle.title}
                   </h2>
                   <p className="text-xl text-gray-600 mb-6">
-                    {featuredArticle.excerpt || t('pages.skincare.defaultExcerpt')}
+                    {featuredArticle.excerpt || t('pages.wellness.defaultExcerpt')}
                   </p>
                   <div className="flex items-center space-x-4 mb-6 text-sm text-gray-500">
                     <div className="flex items-center space-x-1">
                       <User className="w-4 h-4" />
-                      <span>{t('pages.skincare.wellnessExpert')}</span>
+                      <span>{t('pages.wellness.wellnessExpert')}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Clock className="w-4 h-4" />
@@ -130,7 +130,7 @@ const SkincareWellnessPage = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-            {t('pages.skincare.latestArticles')}
+            {t('pages.wellness.latestArticles')}
           </h2>
           
           {regularArticles.length > 0 ? (
@@ -156,14 +156,14 @@ const SkincareWellnessPage = () => {
                       {article.title}
                     </h3>
                     <p className="text-gray-600 mb-4 line-clamp-3">
-                      {article.excerpt || t('pages.skincare.defaultDescription')}
+                      {article.excerpt || t('pages.wellness.defaultDescription')}
                     </p>
 
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <User className="w-4 h-4" />
-                          <span>{t('pages.skincare.wellnessExpert')}</span>
+                          <span>{t('pages.wellness.wellnessExpert')}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Clock className="w-4 h-4" />

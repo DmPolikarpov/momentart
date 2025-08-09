@@ -19,14 +19,6 @@ const Categories = () => {
       categoryKey: "manicure"
     },
     {
-      icon: Eye,
-      title: t('categories.eyelashes.title'),
-      description: t('categories.eyelashes.description'),
-      color: "from-purple-400 to-pink-500",
-      path: "/eyelashes",
-      categoryKey: "eyelash"
-    },
-    {
       icon: Sparkles,
       title: t('categories.cosmetology.title'),
       description: t('categories.cosmetology.description'),
@@ -36,11 +28,11 @@ const Categories = () => {
     },
     {
       icon: Heart,
-      title: t('categories.skincare.title'),
-      description: t('categories.skincare.description'),
+      title: t('categories.wellness.title'),
+      description: t('categories.wellness.description'),
       color: "from-pink-400 to-rose-500",
-      path: "/skincare-wellness",
-      categoryKey: "skincare"
+      path: "/wellness-wellness",
+      categoryKey: "wellness"
     }
   ];
 
@@ -94,7 +86,7 @@ const Categories = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <div
               key={category.title}

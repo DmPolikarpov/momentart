@@ -15,9 +15,8 @@ const Gallery = () => {
   const categories = [
     { id: 'all', name: t('gallery.allArticles'), color: 'from-purple-500 to-rose-500' },
     { id: 'manicure', name: t('categories.manicure.title'), color: 'from-rose-500 to-pink-600' },
-    { id: 'eyelashes', name: t('categories.eyelashes.title'), color: 'from-purple-500 to-violet-600' },
     { id: 'cosmetology', name: t('categories.cosmetology.title'), color: 'from-amber-500 to-orange-600' },
-    { id: 'skincare & wellness', name: t('categories.skincare.title'), color: 'from-emerald-500 to-green-600' }
+    { id: 'wellness', name: t('categories.wellness.title'), color: 'from-emerald-500 to-green-600' }
   ];
 
   const filteredArticles = selectedCategory === 'all' 

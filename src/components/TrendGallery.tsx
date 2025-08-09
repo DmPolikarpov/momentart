@@ -11,8 +11,7 @@ const TrendGallery = () => {
 
   const trendingTopics = [
     { id: 'manicure', name: t('trendGallery.topics.nailArt'), color: 'from-rose-500 to-pink-600', category: t('categories.manicure.title') },
-    { id: 'eyelash', name: t('trendGallery.topics.lashTech'), color: 'from-purple-500 to-violet-600', category: t('categories.eyelashes.title') },
-    { id: 'skincare', name: t('trendGallery.topics.skincare'), color: 'from-emerald-500 to-green-600', category: t('categories.skincare.title') },
+    { id: 'wellness', name: t('trendGallery.topics.wellness'), color: 'from-emerald-500 to-green-600', category: t('categories.wellness.title') },
     { id: 'cosmetology', name: t('trendGallery.topics.makeup'), color: 'from-amber-500 to-orange-600', category: t('categories.cosmetology.title') }
   ];
 
