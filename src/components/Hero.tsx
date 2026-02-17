@@ -17,7 +17,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero bg-no-repeat bg-cover">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero bg-no-repeat bg-cover pb-20 sm:pb-24">
       {/* Animated Artistic Background */}
       {/* <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-emerald-100 via-teal-100 to-cyan-100 animate-gradient-shift">
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent animate-pulse"></div>
@@ -119,7 +119,7 @@ const Hero = () => {
 
       {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-        <div className="w-6 h-10 border-2 border-green-300 rounded-full flex justify-center animate-bounce-gentle">
+        <div className="w-6 h-10 border-2 border-green-300 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-green-400 rounded-full mt-2 animate-scroll-indicator"></div>
         </div>
       </div>
