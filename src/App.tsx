@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
+import Videos from "./pages/Videos";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/videos" element={<Videos />} />
         </Routes>
       </BrowserRouter>
     {/* </TooltipProvider> */}
