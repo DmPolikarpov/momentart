@@ -59,15 +59,33 @@ const FeaturedArticles = () => {
 
         {/* Enhanced Category Tabs */}
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-4 bg-white/80 backdrop-blur-sm shadow-lg rounded-full">
+        {/*Change "grid" to "flex + overflow-x-auto"*/}
+          <TabsList className="w-full max-w-2xl mx-auto
+           bg-white/80 backdrop-blur-sm shadow-lg rounded-full
+           flex items-center gap-2
+           overflow-x-auto
+           px-2 py-2
+           [scrollbar-width:none]"
+           >
+
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.id} 
                 value={category.id}
-                className="rounded-full font-semibold transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:scale-105"
+                className="
+                rounded-full font-semibold transition-all duration-300
+                data-[state=active]:bg-gradient-to-r data-[state=active]:from-rose-500 data-[state=active]:to-pink-600
+                data-[state=active]:text-white data-[state=active]:shadow-lg
+                hover:scale-105
+                whitespace-nowrap
+                flex-shrink-0
+                px-4 py-2
+                min-w-max
+                text-sm
+                "
               >
-                <span className="flex items-center space-x-2">
-                  <span>{category.label}</span>
+                <span className="flex items-center gap-2">
+                  <span className="whitespace-nowrap">{category.label}</span>
                   <span className="text-xs bg-white/20 rounded-full px-2 py-0.5">{category.count}</span>
                 </span>
               </TabsTrigger>
@@ -133,8 +151,9 @@ const FeaturedArticles = () => {
                             </span>
                           </div>
                         )}
-                        <div className={`absolute bottom-4 right-4 transition-all duration-300 ${
-                          hoveredCard === article.id ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                        <div className={`absolute bottom-4 sm:bottom-6 md:bottom-10 left-1/2 -translate-x-1/2
+                            opacity-100 scale-100 md:transition-all md:duration-300
+                            ${hoveredCard === article.id ? "md:opacity-100 md:scale-100" : "md:opacity-0 md:scale-0"}
                         }`}>
                           <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
                             <ArrowRight className="w-5 h-5 text-rose-600" />

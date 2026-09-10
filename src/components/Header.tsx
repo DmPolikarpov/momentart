@@ -171,6 +171,15 @@ const Header = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
 
+            <a
+                href="#"
+                onClick={() => navigate('/videos')}
+                className={`${setTextColor()} hover:text-green-500 transition-all duration-300 relative group font-medium`}
+            >
+              {t('nav.videos')}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+
             {/* <a
               href="#"
               onClick={() => navigate('/contact')}
@@ -292,6 +301,13 @@ const Header = () => {
               className="block w-full text-left text-gray-700 hover:text-green-500 transition-colors font-medium"
             >
               {t('nav.about')}
+            </button>
+
+            <button
+              onClick={() => navigate('/videos')}
+              className="block w-full text-left text-gray-700 hover:text-green-500 transition-colors font-medium"
+            >
+              {t('nav.videos')}
             </button>
 
             <button

@@ -135,6 +135,48 @@
       "wellnessExpert": "Wellness Expert",
       "defaultDescription": "Learn about natural wellness approaches and practices for healthy, glowing skin."
     },
+    "videos": {
+      "badge": "Tutorial Library",
+      "title": "Video Tutorials",
+      "subtitle": "Upload tutorial videos and keep your learning materials in one place.",
+
+      "form": {
+        "header": "Upload a tutorial",
+        "title": "Title",
+        "titlePlaceholder": "e.g. Perfect manicure basics",
+        "file": "Video file",
+        "hint": "Tip: mp4/webm works best in browsers.",
+        "description": "Description (optional)",
+        "descriptionPlaceholder": "Short summary of the tutorial...",
+        "upload": "Upload",
+        "uploading": "Uploading..."
+      },
+
+      "preview": {
+        "title": "Preview",
+        "noFile": "No file",
+        "text": "Choose a video to see a preview here",
+        "note": "Mock mode: videos are previewed via temporary browser URL. After refresh, only metadata remains."
+      },
+
+      "list": {
+        "title": "All videos",
+        "count": "items",
+        "empty": "No videos yet. Upload your first tutorial!"
+      },
+
+      "card": {
+        "badge": "Tutorial",
+        "noDescription": "No description",
+        "delete": "Delete"
+      },
+
+      "errors": {
+        "noFile": "Choose a video file",
+        "noTitle": "Title is required",
+        "generic": "Upload error"
+      }
+    },
     "common": {
       "endOfArticles": "You've reached the end of all articles",
       "noArticles": "No articles available yet. Check back soon!"
