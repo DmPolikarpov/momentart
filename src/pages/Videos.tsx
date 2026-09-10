@@ -1,8 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { videosApi, type VideoItem } from "@/api/videos";
 import { useTranslation } from "react-i18next";
-import { Play, UploadCloud, Trash2, Video } from "lucide-react";
+import { Play, UploadCloud, Trash2, Video, ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import {t} from "i18next";
 export default function Videos() {
     const { t } = useTranslation();
     const qc = useQueryClient();
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -51,7 +53,7 @@ export default function Videos() {
     });
 
     return (
-        <div className="min-h-screen bg-white/50 backdrop-blur-sm relative overflow-hidden">
+        <div className="min-h-screen bg-slate-50/70 backdrop-blur-sm relative overflow-hidden">
             {/* Background blobs */}
             <div className="absolute inset-0 opacity-40 pointer-events-none">
                 <div className="absolute -top-24 -left-24 w-80 h-80 bg-gradient-to-r from-rose-200/40 to-pink-200/40 rounded-full blur-3xl" />
@@ -59,6 +61,15 @@ export default function Videos() {
             </div>
 
             <div className="container mx-auto px-4 py-10 relative z-10">
+
+                <button
+                    onClick={() => navigate("/")}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-emerald-600 transition-all mb-6 group"
+                >
+                    <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                    {t("pages.videos.backToHome", "На главную")}
+                </button>
+
                 {/* Header */}
                 <div className="text-center mb-10">
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-full px-5 py-2 mb-5">
@@ -76,14 +87,14 @@ export default function Videos() {
 
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         {t(
-                            "videos.subtitle",
+                            "pages.videos.subtitle",
                             "Upload tutorial videos and keep your learning materials in one place."
                         )}
                     </p>
                 </div>
 
                 {/* Upload section */}
-                <div className="bg-white/80 backdrop-blur-sm border border-white/50 rounded-3xl shadow-lg p-6 md:p-8 mb-10">
+                <div className="bg-gray-100 backdrop-blur-sm border border-white/50 rounded-3xl shadow-lg p-6 md:p-8 mb-10">
                     <div className="flex items-center gap-2 mb-6">
                         <UploadCloud className="w-5 h-5 text-emerald-600" />
                         <div className="text-lg font-semibold text-gray-900">
@@ -183,7 +194,7 @@ export default function Videos() {
 
                             <div className="mt-4 text-xs text-gray-500 leading-relaxed">
                                 {t(
-                                    "videos.preview.note",
+                                    "pages.videos.preview.note",
                                     "Mock mode: videos are previewed via temporary browser URL. After refresh, only metadata remains."
                                 )}
                             </div>
